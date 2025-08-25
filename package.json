@@ -11,12 +11,12 @@
 		"check": "astro check"
 	},
 	"dependencies": {
-		"@astrojs/mdx": "2.2.0",
+		"@astrojs/mdx": "^4.3.4",
 		"@astrojs/rss": "4.0.5",
 		"@astrojs/sitemap": "3.1.1",
-		"@astrojs/tailwind": "5.1.0",
-		"astro": "4.5.5",
-		"astro-expressive-code": "^0.33.5",
+		"@astrojs/tailwind": "^5.1.5",
+		"astro": "^5.13.3",
+		"astro-expressive-code": "^0.41.3",
 		"astro-icon": "^1.1.0",
 		"rehype-external-links": "^3.0.0",
 		"satori": "0.10.13",
