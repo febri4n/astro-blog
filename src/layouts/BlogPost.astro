@@ -6,6 +6,9 @@ import TOC from "@/components/blog/TOC.astro";
 import WebMentions from "@/components/blog/webmentions/index.astro";
 
 import BaseLayout from "./Base.astro";
+import { getAllPosts, sortMDByDate, getUniqueTagsWithCount } from "@/data/post";
+import FormattedDate from "@/components/FormattedDate.astro";
+import { Icon } from "astro-icon/components";
 
 interface Props {
 	post: CollectionEntry<"post">;
@@ -13,15 +16,34 @@ interface Props {
 
 const { post } = Astro.props;
 const {
-	data: { description, ogImage, publishDate, title, updatedDate },
+	data: { description, ogImage, publishDate, title, updatedDate, tags },
 	slug,
 } = post;
 const socialImage = ogImage ?? `/og-image/${slug}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 const { headings } = await post.render();
+
+// Related posts: same tags, exclude current
+const allPosts = await getAllPosts();
+const sortedPosts = sortMDByDate(allPosts);
+const relatedPosts = sortedPosts
+	.filter((p) => p.slug !== slug)
+	.sort((a, b) => {
+		const aMatch = a.data.tags?.filter((t) => tags?.includes(t)).length ?? 0;
+		const bMatch = b.data.tags?.filter((t) => tags?.includes(t)).length ?? 0;
+		return bMatch - aMatch;
+	})
+	.slice(0, 3);
 ---
 
 <BaseLayout meta={{ articleDate, description, ogImage: socialImage, title }}>
+	<!-- Progress Bar -->
+	<div
+		id="reading-progress"
+		class="fixed start-0 top-0 z-50 h-[3px] bg-accent transition-all duration-150"
+		style="width: 0%"
+	></div>
+
 	<div class="gap-x-10 lg:flex lg:items-start">
 		{!!headings.length && <TOC headings={headings} />}
 		<article class="flex-grow break-words" data-pagefind-body>
@@ -32,6 +54,54 @@ const { headings } = await post.render();
 				<slot />
 				<WebMentions />
 			</div>
+
+			<!-- Share Buttons -->
+			<div class="mt-10 flex items-center gap-3 border-t border-accent/10 pt-6">
+				<span class="text-xs font-medium text-textColor/60">Bagikan:</span>
+				<a
+					href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(`https://blog.febri4n.my.id/posts/${slug}/`)}`}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex h-8 w-8 items-center justify-center rounded-full border border-accent/20 text-textColor/60 transition-all hover:border-accent hover:bg-accent/10 hover:text-accent"
+					aria-label="Bagikan ke X/Twitter"
+				>
+					<Icon aria-hidden="true" class="h-4 w-4" focusable="false" name="mdi:twitter" />
+				</a>
+				<a
+					href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://blog.febri4n.my.id/posts/${slug}/`)}`}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex h-8 w-8 items-center justify-center rounded-full border border-accent/20 text-textColor/60 transition-all hover:border-accent hover:bg-accent/10 hover:text-accent"
+					aria-label="Bagikan ke LinkedIn"
+				>
+					<Icon aria-hidden="true" class="h-4 w-4" focusable="false" name="mdi:linkedin" />
+				</a>
+			</div>
+
+			<!-- Related Posts -->
+			{relatedPosts.length > 0 && (
+				<section class="mt-10 border-t border-accent/10 pt-6">
+					<h3 class="mb-4 text-base font-semibold">📖 Artikel Terkait</h3>
+					<div class="grid gap-4 sm:grid-cols-3">
+						{relatedPosts.map((rp) => (
+							<a
+								href={`/posts/${rp.slug}/`}
+								class="group rounded-lg border border-accent/10 p-4 transition-all hover:border-accent/30 hover:bg-accent/5"
+							>
+								<h4 class="mb-1.5 text-sm font-medium text-textColor group-hover:text-accent line-clamp-2">
+									{rp.data.title}
+								</h4>
+								<p class="line-clamp-2 text-xs text-textColor/50">
+									{rp.data.description}
+								</p>
+								<div class="mt-2 flex items-center gap-2 text-[10px] text-textColor/40">
+									<FormattedDate date={rp.data.publishDate} />
+								</div>
+							</a>
+						))}
+					</div>
+				</section>
+			)}
 		</article>
 	</div>
 	<button
@@ -55,12 +125,24 @@ const { headings } = await post.render();
 </BaseLayout>
 
 <script>
+	// Progress bar
+	const progressBar = document.getElementById("reading-progress") as HTMLDivElement;
+	function updateProgress() {
+		const scrollTop = document.documentElement.scrollTop;
+		const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+		if (scrollHeight > 0) {
+			progressBar.style.width = Math.min((scrollTop / scrollHeight) * 100, 100) + "%";
+		}
+	}
+	window.addEventListener("scroll", updateProgress, { passive: true });
+	updateProgress();
+
+	// Scroll to top button
 	const scrollBtn = document.getElementById("to-top-btn") as HTMLButtonElement;
 	const targetHeader = document.getElementById("blog-hero") as HTMLDivElement;
 
 	function callback(entries: IntersectionObserverEntry[]) {
 		entries.forEach((entry) => {
-			// only show the scroll to top button when the heading is out of view
 			scrollBtn.dataset.show = (!entry.isIntersecting).toString();
 		});
 	}

@@ -8,12 +8,12 @@ import { Icon } from "astro-icon/components";
 
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
-const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+const allPostsByDate = sortMDByDate(allPosts);
+const latestPosts = allPostsByDate.slice(0, MAX_POSTS);
+const featured = allPostsByDate[0]; // Latest post as featured
 const tagsWithCount = getUniqueTagsWithCount(allPosts).slice(0, 12);
 const totalPosts = allPosts.length;
 const totalTags = tagsWithCount.length;
-
-// Estimated total reading time (average ~5 min per post for quick calc)
 const totalReadingTime = totalPosts * 5;
 ---
 
@@ -86,6 +86,45 @@ const totalReadingTime = totalPosts * 5;
 		</div>
 	</section>
 
+	<!-- Featured Post -->
+	{
+		featured && (
+			<section class="mb-12">
+				<h2 class="title mb-4 text-lg font-semibold">🌟 Featured</h2>
+				<a
+					href={`/posts/${featured.slug}/`}
+					class="group block rounded-xl border border-accent/20 bg-gradient-to-br from-accent/5 to-transparent p-5 transition-all hover:border-accent/40 hover:shadow-md sm:p-6"
+				>
+					<div class="flex items-start justify-between gap-4">
+						<div class="flex-1">
+							<h3 class="mb-2 text-lg font-bold text-accent group-hover:underline sm:text-xl">
+								{featured.data.title}
+							</h3>
+							<p class="mb-3 line-clamp-2 text-sm text-textColor/70">
+								{featured.data.description}
+							</p>
+							<div class="flex flex-wrap items-center gap-3 text-xs text-textColor/50">
+								<span>
+									<FormattedDate date={featured.data.publishDate} />
+								</span>
+								{featured.data.tags?.length && (
+									<div class="flex gap-1.5">
+										{featured.data.tags.slice(0, 3).map((tag) => (
+											<span class="rounded-full border border-accent/15 px-2 py-0.5 text-[10px] text-accent">
+												#{tag}
+											</span>
+										))}
+									</div>
+								)}
+							</div>
+						</div>
+						<span class="hidden text-2xl sm:block">&rarr;</span>
+					</div>
+				</a>
+			</section>
+		)
+	}
+
 	<!-- Latest Posts -->
 	<section aria-label="Blog post list">
 		<div class="mb-4 flex items-center justify-between">
@@ -96,7 +135,7 @@ const totalReadingTime = totalPosts * 5;
 		</div>
 		<ul class="divide-y divide-accent/10">
 			{
-				allPostsByDate.map((p) => (
+				latestPosts.map((p) => (
 					<li class="flex flex-col gap-x-2 py-4 sm:flex-row sm:items-start">
 						<PostPreview post={p} withDesc={true} />
 					</li>
