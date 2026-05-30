@@ -3,7 +3,6 @@ import SocialList from "@/components/SocialList.astro";
 import PageLayout from "@/layouts/Base.astro";
 import { getAllPosts, sortMDByDate, getUniqueTagsWithCount } from "@/data/post";
 import FormattedDate from "@/components/FormattedDate.astro";
-import { Icon } from "astro-icon/components";
 
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
@@ -14,115 +13,6 @@ const tagsWithCount = getUniqueTagsWithCount(allPosts).slice(0, 12);
 const totalPosts = allPosts.length;
 const totalTags = tagsWithCount.length;
 const totalReadingTime = totalPosts * 5;
-
-const certs = [
-  {
-    name: "Kubestronaut",
-    issuer: "The Linux Foundation",
-    date: "Jan 2026",
-    status: "active",
-    badgeId: "92e14239-4c92-4b1c-9cec-bba617caa537",
-    img: "https://images.credly.com/size/340x340/images/cd6c6449-6814-4613-a2d3-13cf4ac5be4f/image.png",
-    highlight: true,
-  },
-  {
-    name: "CKS",
-    label: "Certified Kubernetes Security Specialist",
-    issuer: "The Linux Foundation",
-    date: "Exp Des 2027",
-    status: "active",
-    badgeId: "aea1ab6e-ee64-4f11-9276-824dfefbc1f5",
-    img: "https://images.credly.com/size/340x340/images/9945dfcb-1cca-4529-85e6-db1be3782210/kubernetes-security-specialist-logo2.png",
-  },
-  {
-    name: "CKA",
-    label: "Certified Kubernetes Administrator",
-    issuer: "The Linux Foundation",
-    date: "Exp Jan 2027",
-    status: "active",
-    badgeId: "390f1458-ec0c-45f5-baa1-f0e19f23fa16",
-    img: "https://images.credly.com/size/340x340/images/8b8ed108-e77d-4396-ac59-2504583b9d54/cka_from_cncfsite__281_29.png",
-  },
-  {
-    name: "CKAD",
-    label: "Certified Kubernetes Application Developer",
-    issuer: "The Linux Foundation",
-    date: "Exp Jul 2027",
-    status: "active",
-    badgeId: "1e1006de-c8b6-4fc6-bc3d-2d507d1d410b",
-    img: "https://images.credly.com/size/340x340/images/cc8adc83-1dc6-4d57-8e20-22171247e052/blob",
-  },
-  {
-    name: "KCSA",
-    label: "Kubernetes & Cloud Native Security Associate",
-    issuer: "The Linux Foundation",
-    date: "Exp Okt 2027",
-    status: "active",
-    badgeId: "dca0f393-75dc-445b-8cdd-7c9eb65c880b",
-    img: "https://images.credly.com/size/340x340/images/67dd8a95-8876-4051-9cb9-3d97c204f85a/image.png",
-  },
-  {
-    name: "KCNA",
-    label: "Kubernetes & Cloud Native Associate",
-    issuer: "The Linux Foundation",
-    date: "Exp Sep 2026",
-    status: "active",
-    badgeId: "b2eded30-8db8-45b9-9c67-106b1a98296a",
-    img: "https://images.credly.com/size/340x340/images/f28f1d88-428a-47f6-95b5-7da1dd6c1000/KCNA_badge.png",
-  },
-  {
-    name: "RHCSA",
-    label: "Red Hat Certified System Administrator",
-    issuer: "Red Hat",
-    date: "Exp Jun 2027",
-    status: "active",
-    badgeId: "290d8ae6-c1a3-41e4-ace9-bac4bb609005",
-    img: "https://images.credly.com/size/340x340/images/572de0ba-2c59-4816-a59d-b0e1687e45ee/image.png",
-  },
-  {
-    name: "Associate Cloud Engineer",
-    issuer: "Google Cloud",
-    date: "Exp Jun 2026",
-    status: "active",
-    badgeId: "d22be9eb-5b9d-4deb-9aeb-0fc02866f4d0",
-    img: "https://images.credly.com/size/340x340/images/08096465-cbfc-4c3e-93e5-93c5aa61f23e/image.png",
-  },
-  {
-    name: "AWS re/Start Graduate",
-    issuer: "Amazon Web Services",
-    date: "Jan 2026",
-    status: "active",
-    badgeId: "49430155-c9cd-4235-bbf7-932ee1d97d88",
-    img: "https://images.credly.com/size/340x340/images/44e2c252-5d19-4574-9646-005f7225bf53/image.png",
-  },
-  {
-    name: "LFS250",
-    label: "Kubernetes & Cloud Native Essentials",
-    issuer: "The Linux Foundation",
-    date: "Agu 2024",
-    status: "active",
-    badgeId: "44216399-5d1a-459f-8251-8efa1b92f106",
-    img: "https://images.credly.com/size/340x340/images/7404ca0d-98e1-48b6-a2a3-de8d7dcd85b5/blob",
-  },
-  {
-    name: "LFS261",
-    label: "DevOps & SRE Fundamentals",
-    issuer: "The Linux Foundation",
-    date: "Mei 2025",
-    status: "active",
-    badgeId: "b9579b02-2f89-4e18-ac28-4015f8800fdb",
-    img: "https://images.credly.com/size/340x340/images/77796674-2a4e-4a35-823e-9e55e7ee159e/blob",
-  },
-  {
-    name: "LFCA",
-    label: "Linux Foundation Certified IT Associate",
-    issuer: "The Linux Foundation",
-    date: "Exp Jan 2026",
-    status: "expired",
-    badgeId: "4006e966-b08e-4595-b45f-4672cde1356c",
-    img: "https://images.credly.com/size/340x340/images/a2c14e0a-56cb-4990-809a-23b0850c1f96/Training_Badges_LFCA_for_acclaim.png",
-  },
-];
 ---
 
 <PageLayout meta={{ title: "Home" }}>
@@ -271,35 +161,5 @@ const certs = [
 				})
 			}
 		</ul>
-	</section>
-
-	<!-- Certifications -->
-	<section class="mt-12 border-t border-accent/10 pt-8">
-		<h2 class="title mb-4 text-base font-semibold">🏆 Sertifikasi</h2>
-		<div class="flex flex-wrap gap-1.5">
-			{certs.map((cert) => (
-				<a
-					href={`https://www.credly.com/badges/${cert.badgeId}`}
-					target="_blank"
-					rel="noopener noreferrer"
-					title={`${cert.label || cert.name} — ${cert.issuer} (${cert.date})`}
-					class:list={[
-						"group relative inline-flex items-center rounded-lg border border-accent/10 bg-accent/5 p-1 transition-all hover:border-accent/30",
-						cert.highlight && "border-yellow-500/30 bg-yellow-500/5 hover:border-yellow-500/60",
-						cert.status === "expired" && "hover:grayscale hover:opacity-40",
-					]}
-				>
-					{cert.highlight && (
-						<span class="absolute -right-0.5 -top-0.5 text-[8px]">🏆</span>
-					)}
-					<img
-						src={cert.img}
-						alt={cert.name}
-						class="h-8 w-8 object-contain sm:h-9 sm:w-9"
-						loading="lazy"
-					/>
-				</a>
-			))}
-		</div>
 	</section>
 </PageLayout>

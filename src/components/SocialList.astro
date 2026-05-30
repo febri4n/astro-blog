@@ -27,6 +27,11 @@ const socialLinks: {
 		link: "https://twitter.com/febri4n",
 		name: "mdi:twitter",
 	},
+	{
+		friendlyName: "Credly",
+		link: "https://www.credly.com/users/solihin-febrian-saputra/badges",
+		name: "credly",
+	},
 ];
 ---
 
@@ -42,7 +47,11 @@ const socialLinks: {
 						rel={`noopener noreferrer ${isWebmention ? "me authn" : ""}`}
 						target="_blank"
 					>
-						<Icon aria-hidden="true" class="h-6 w-6" focusable="false" name={name} />
+						{name === "credly" ? (
+							<img src="/credly-icon.png" alt="Credly" class="h-6 w-6" />
+						) : (
+							<Icon aria-hidden="true" class="h-6 w-6" focusable="false" name={name} />
+						)}
 						<span class="sr-only">{friendlyName}</span>
 					</a>
 				</li>
