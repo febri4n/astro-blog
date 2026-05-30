@@ -1,6 +1,5 @@
 ---
 import SocialList from "@/components/SocialList.astro";
-import PostPreview from "@/components/blog/PostPreview.astro";
 import PageLayout from "@/layouts/Base.astro";
 import { getAllPosts, sortMDByDate, getUniqueTagsWithCount } from "@/data/post";
 import FormattedDate from "@/components/FormattedDate.astro";
@@ -135,11 +134,30 @@ const totalReadingTime = totalPosts * 5;
 		</div>
 		<ul class="divide-y divide-accent/10">
 			{
-				latestPosts.map((p) => (
-					<li class="flex flex-col gap-x-2 py-4 sm:flex-row sm:items-start">
-						<PostPreview post={p} withDesc={true} />
-					</li>
-				))
+				latestPosts.map((p) => {
+					const postDate = p.data.updatedDate ?? p.data.publishDate;
+					return (
+						<li class="grid gap-x-4 gap-y-1 py-4 sm:grid-cols-[120px_1fr]">
+							<FormattedDate
+								class="min-w-[120px] text-gray-600 dark:text-gray-400"
+								date={postDate}
+							/>
+							<div>
+								{p.data.draft && <span class="text-red-500">(Draft) </span>}
+								<a
+									class="cactus-link font-medium"
+									data-astro-prefetch
+									href={`/posts/${p.slug}/`}
+								>
+									{p.data.title}
+								</a>
+								<p class="mt-1 line-clamp-2 text-sm text-textColor/60">
+									{p.data.description}
+								</p>
+							</div>
+						</li>
+					);
+				})
 			}
 		</ul>
 	</section>
