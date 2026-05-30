@@ -3,7 +3,7 @@ import type { GetStaticPaths, Page } from "astro";
 import type { CollectionEntry } from "astro:content";
 
 import Pagination from "@/components/Paginator.astro";
-import PostPreview from "@/components/blog/PostPreview.astro";
+import FormattedDate from "@/components/FormattedDate.astro";
 import PageLayout from "@/layouts/Base.astro";
 import { getAllPosts, getUniqueTags, sortMDByDate } from "@/data/post";
 
@@ -29,20 +29,20 @@ const { page } = Astro.props;
 const { tag } = Astro.params;
 
 const meta = {
-	description: `View all posts with the tag - ${tag}`,
-	title: `Tag: ${tag}`,
+	description: `Tulisan dengan tag ${tag} — Cloud, DevOps & Linux`,
+	title: `#${tag}`,
 };
 
 const paginationProps = {
 	...(page.url.prev && {
 		prevUrl: {
-			text: `← Previous Tags`,
+			text: `← Sebelumnya`,
 			url: page.url.prev,
 		},
 	}),
 	...(page.url.next && {
 		nextUrl: {
-			text: `Next Tags →`,
+			text: `Selanjutnya →`,
 			url: page.url.next,
 		},
 	}),
@@ -50,19 +50,38 @@ const paginationProps = {
 ---
 
 <PageLayout meta={meta}>
-	<h1 class="title mb-6 flex items-center">
+	<h1 class="title mb-6 flex items-center text-2xl font-bold">
 		<a class="text-accent sm:hover:underline" href="/tags/">Tags</a>
-		<span class="me-3 ms-2">→</span>
-		<span class="text-xl">#{tag}</span>
+		<span class="mx-2 text-textColor/40">/</span>
+		<span class="text-accent">#{tag}</span>
 	</h1>
 	<section aria-label="Blog post list">
-		<ul class="space-y-8">
+		<ul class="divide-y divide-accent/10">
 			{
-				page.data.map((p) => (
-					<li class="flex flex-col flex-wrap gap-2 sm:flex-row [&_q]:basis-full">
-						<PostPreview as="h2" post={p} withDesc />
-					</li>
-				))
+				page.data.map((p) => {
+					const postDate = p.data.updatedDate ?? p.data.publishDate;
+					return (
+						<li class="grid gap-x-4 gap-y-1 py-4 sm:grid-cols-[120px_1fr]">
+							<FormattedDate
+								class="min-w-[120px] text-gray-600 dark:text-gray-400"
+								date={postDate}
+							/>
+							<div>
+								{p.data.draft && <span class="text-red-500">(Draft) </span>}
+								<a
+									class="cactus-link font-medium"
+									data-astro-prefetch
+									href={`/posts/${p.slug}/`}
+								>
+									{p.data.title}
+								</a>
+								<p class="mt-1 line-clamp-2 text-sm text-textColor/60">
+									{p.data.description}
+								</p>
+							</div>
+						</li>
+					);
+				})
 			}
 		</ul>
 		<Pagination {...paginationProps} />
