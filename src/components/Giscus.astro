@@ -1,0 +1,63 @@
+---
+// Giscus comment widget using GitHub Discussions
+// Repo: febri4n/astro-blog
+// Category: Announcements (recommended for giscus)
+const mapping = "pathname";
+const strict = "1";
+const reactionsEnabled = "1";
+const emitMetadata = "0";
+const inputPosition = "top";
+const lang = "id";
+---
+
+<div id="giscus-container" class="mt-12">
+	<h3 class="mb-4 text-base font-semibold">💬 Komentar</h3>
+	<p class="mb-6 text-xs text-textColor/50">
+		Komentar via GitHub Discussions. Login GitHub diperlukan.
+	</p>
+	<script
+		src="https://giscus.app/client.js"
+		data-repo="febri4n/astro-blog"
+		data-repo-id="R_kgDOLuBjsA"
+		data-category="Announcements"
+		data-category-id="DIC_kwDOLuBjsM4C-LZI"
+		data-mapping={mapping}
+		data-strict={strict}
+		data-reactions-enabled={reactionsEnabled}
+		data-emit-metadata={emitMetadata}
+		data-input-position={inputPosition}
+		data-theme="preferred_color_scheme"
+		data-lang={lang}
+		data-loading="lazy"
+		crossorigin="anonymous"
+		async
+	></script>
+</div>
+
+<script>
+	// Sync giscus theme with blog dark/light toggle
+	function getGiscusTheme() {
+		const theme = document.documentElement.getAttribute("data-theme");
+		return theme === "dark" ? "dark" : "light";
+	}
+
+	function setGiscusTheme() {
+		const iframe = document.querySelector("iframe.giscus-frame");
+		if (iframe) {
+			iframe.contentWindow?.postMessage(
+				{ giscus: { setConfig: { theme: getGiscusTheme() } } },
+				"https://giscus.app"
+			);
+		}
+	}
+
+	// Listen for theme changes
+	const observer = new MutationObserver(() => setGiscusTheme());
+	observer.observe(document.documentElement, {
+		attributes: true,
+		attributeFilter: ["data-theme"],
+	});
+
+	// Also apply theme when giscus loads
+	document.addEventListener("giscus:loaded", () => setGiscusTheme());
+</script>

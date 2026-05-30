@@ -9,6 +9,7 @@ import BaseLayout from "./Base.astro";
 import { getAllPosts, sortMDByDate, getUniqueTagsWithCount } from "@/data/post";
 import FormattedDate from "@/components/FormattedDate.astro";
 import { Icon } from "astro-icon/components";
+import Giscus from "@/components/Giscus.astro";
 
 interface Props {
 	post: CollectionEntry<"post">;
@@ -125,6 +126,7 @@ const relatedPosts = sortedPosts
 					</div>
 				</section>
 			)}
+			<Giscus />
 		</article>
 	</div>
 	<button
