@@ -1,5 +1,5 @@
 ---
-title: "Monitoring VPS & Docker Otomatis dengan Bash + Cron"
+title: "Tutorial Monitoring VPS & Docker Otomatis dengan Bash + Cron"
 description: "Tutorial membuat script monitoring server Linux yang memantau CPU, memory, disk, dan Docker containers lalu dikirim otomatis via cron setiap hari."
 tags: ["docker", "monitoring", "bash", "cron", "linux", "devops"]
 draft: true
@@ -7,7 +7,7 @@ draft: true
 
 ### Kenapa Perlu Monitoring Server?
 
-Jika memiliki VPS atau server sendiri, pasti pernah mengalami aplikasi tiba-tiba lemot atau container mati tanpa diketahui penyebabnya. Masalahnya, tidak mungkin 24 jam terus memantau terminal. Solusinya sederhana -- buat script monitoring yang berjalan otomatis setiap hari dan mengirimkan kondisi server.
+Jika memiliki VPS atau server sendiri, pasti pernah mengalami aplikasi tiba-tiba lemot atau container mati tanpa diketahui penyebabnya. Masalahnya, tidak mungkin 24 jam terus memantau terminal. Solusinya sederhana, buat script monitoring yang berjalan otomatis setiap hari dan mengirimkan kondisi server.
 
 Di tutorial ini, akan dibahas cara membuat script bash untuk memonitor resource system (CPU, memory, disk), mengecek status Docker containers, dan mendeteksi jika ada container baru atau yang hilang.
 
@@ -49,7 +49,7 @@ DISK_PCT=$(echo "$DISK_INFO" | awk '{print $1}')
 DISK_FREE=$(echo "$DISK_INFO" | awk '{print $3}')
 ```
 
-Data dikumpulkan menggunakan command standar seperti `top`, `free`, dan `df` -- jadi tidak perlu menginstall tools tambahan. Jika CPU atau memory sudah di atas 80%, script akan otomatis memberikan tanda peringatan.
+Data dikumpulkan menggunakan command standar seperti `top`, `free`, dan `df`. Tidak perlu menginstall tools tambahan. Jika CPU atau memory sudah di atas 80%, script akan otomatis memberikan tanda peringatan.
 
 #### 2. Cek Docker Containers
 
@@ -67,7 +67,7 @@ if docker ps &>/dev/null; then
 fi
 ```
 
-**Catatan penting:** Saat pertama membuat script ini, penggunaan `docker ps -q | grep -c . || echo 0` untuk menghitung container ternyata bermasalah. Ketika tidak ada container, `echo "" | wc -l` mengembalikan 1 bukan 0. Solusinya menggunakan `wc -l` langsung, yang lebih reliable.
+**Catatan penting:** Saat pertama membuat script ini, penggunaan `docker ps -q | grep -c . || echo 0` untuk menghitung container ternyata bermasalah. Ketika tidak ada container, `echo "" | wc -l` mengembalikan 1 bukan 0. Solusinya menggunakan `wc -l` langsung yang lebih reliable.
 
 #### 3. Deteksi Perubahan Container
 
@@ -82,7 +82,7 @@ if [ -f "$STATE_FILE" ]; then
 fi
 ```
 
-Jika ada container baru, akan muncul tanda ➕. Jika ada yang hilang, tanda ➖. Sangat berguna untuk mendeteksi jika container crash dan di-restart otomatis -- perubahan akan terlihat meskipun container saat ini sedang running.
+Jika ada container baru, akan muncul tanda ➕. Jika ada yang hilang, tanda ➖. Fitur ini sangat berguna untuk mendeteksi jika container crash dan di-restart otomatis. Perubahan akan terlihat meskipun container saat ini sedang running.
 
 ### Setup Cron
 
@@ -107,7 +107,7 @@ hermes cron create \
   --no-agent
 ```
 
-Parameter `--no-agent` penting karena membuat script berjalan **tanpa LLM**, output langsung dikirim. Jadi tidak ada biaya token yang terpakai, hanya eksekusi script saja.
+Parameter `--no-agent` penting karena membuat script berjalan tanpa LLM, output langsung dikirim. Jadi tidak ada biaya token yang terpakai, hanya eksekusi script saja.
 
 ### Output Script
 
@@ -142,9 +142,9 @@ Jika ada container yang mati atau disk hampir penuh, emoji berubah dari ✅ menj
 
 Yang didapatkan dari tutorial ini:
 
-- **Script monitoring** -- menggunakan command bawaan Linux, tidak perlu install tools tambahan
-- **Docker integration** -- mengetahui jumlah container running, stopped, dan crash
-- **Change detection** -- mendeteksi jika ada container baru atau hilang dari kemarin
-- **Zero-cost cron** -- jika menggunakan Hermes `--no-agent`, tidak ada biaya token
+- **Script monitoring** menggunakan command bawaan Linux, tidak perlu install tools tambahan
+- **Docker integration** untuk mengetahui jumlah container running, stopped, dan crash
+- **Change detection** untuk mendeteksi jika ada container baru atau hilang dari kemarin
+- **Zero-cost cron** jika menggunakan Hermes `--no-agent`, tidak ada biaya token
 
 Script lengkap bisa disimpan di `~/.hermes/scripts/daily-report.sh` atau di direktori manapun. Cukup atur cron, dan setiap pagi akan mendapatkan laporan kondisi server tanpa perlu manual mengecek satu per satu.
