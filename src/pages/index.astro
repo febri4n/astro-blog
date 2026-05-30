@@ -2,29 +2,106 @@
 import SocialList from "@/components/SocialList.astro";
 import PostPreview from "@/components/blog/PostPreview.astro";
 import PageLayout from "@/layouts/Base.astro";
-import { getAllPosts, sortMDByDate } from "@/data/post";
+import { getAllPosts, sortMDByDate, getUniqueTagsWithCount } from "@/data/post";
+import FormattedDate from "@/components/FormattedDate.astro";
+import { Icon } from "astro-icon/components";
 
 const MAX_POSTS = 10;
 const allPosts = await getAllPosts();
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+const tagsWithCount = getUniqueTagsWithCount(allPosts).slice(0, 12);
+const totalPosts = allPosts.length;
+const totalTags = tagsWithCount.length;
+
+// Estimated total reading time (average ~5 min per post for quick calc)
+const totalReadingTime = totalPosts * 5;
 ---
 
 <PageLayout meta={{ title: "Home" }}>
-	<section>
-		<h1 class="title mb-6">Hai, Saya Febri4n 👋</h1>
-		<p class="mb-4">
-			Situs ini berisi informasi mengenai diri saya, catatan, tutorial dan 
-			dokumentasi saya pribadi saat belajar atau membagikan sesuatu mengenai Cloud, DevOps & Linux.
-		</p>
-		<SocialList />
+	<!-- Hero Section -->
+	<section class="relative mb-12 mt-4">
+		<div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+			<div class="flex-1">
+				<div class="mb-2 flex items-center gap-2">
+					<span class="inline-block h-3 w-3 rounded-full bg-green-400"></span>
+					<span class="text-xs font-medium text-green-600 dark:text-green-400">Active since 2024</span>
+				</div>
+				<h1 class="title mb-3 text-3xl font-bold leading-tight sm:text-4xl">
+					Hai, Saya <span class="text-accent">Febri4n</span> 👋
+				</h1>
+				<p class="mb-2 max-w-lg text-textColor/80 leading-relaxed">
+					Catatan, tutorial, dan dokumentasi seputar 
+					<strong class="text-textColor">Cloud, DevOps &amp; Linux</strong> 
+					dari pengalaman belajar sehari-hari.
+				</p>
+				<p class="mb-4 text-sm text-textColor/60">
+					<span class="font-medium text-textColor/80">{totalPosts}</span> tulisan · 
+					<span class="font-medium text-textColor/80">{totalTags}</span> topik · 
+					±{totalReadingTime} menit bacaan
+				</p>
+				<SocialList />
+			</div>
+			<!-- Avatar/logo area -->
+			<div class="flex-shrink-0">
+				<div class="flex h-24 w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 sm:h-28 sm:w-28">
+					<svg aria-hidden="true" class="h-14 w-14 sm:h-16 sm:w-16" fill="none" focusable="false" viewBox="0 0 272 480" xmlns="http://www.w3.org/2000/svg">
+						<path d="M181.334 93.333v-40L226.667 80v40l-45.333-26.667ZM136.001 53.333 90.667 26.667v426.666L136.001 480V53.333Z" fill="#B04304"/>
+						<path d="m136.001 119.944 45.333-26.667 45.333 26.667-45.333 26.667-45.333-26.667ZM90.667 26.667 136.001 0l45.333 26.667-45.333 26.666-45.334-26.666ZM181.334 53.277l45.333-26.666L272 53.277l-45.333 26.667-45.333-26.667ZM0 213.277l45.333-26.667 45.334 26.667-45.334 26.667L0 213.277ZM136 239.944l-45.333-26.667v53.333L136 239.944Z" fill="#FF5D01"/>
+						<path d="m136 53.333 45.333-26.666v120L226.667 120V80L272 53.333V160l-90.667 53.333v240L136 480V306.667L45.334 360V240l45.333-26.667v53.334L136 240V53.333Z" fill="#53C68C"/>
+						<path d="M45.334 240 0 213.334v120L45.334 360V240Z" fill="#B04304"/>
+					</svg>
+				</div>
+			</div>
+		</div>
 	</section>
-	<section aria-label="Blog post list" class="mt-16">
-		<h2 class="title mb-4 text-xl">Posts</h2>
-		<ul class="space-y-4">
+
+	<!-- Stats Bar -->
+	<section class="mb-12 grid grid-cols-3 gap-3 sm:gap-4">
+		<div class="rounded-xl border border-accent/10 bg-accent/5 p-4 text-center">
+			<p class="text-2xl font-bold text-accent sm:text-3xl">{totalPosts}</p>
+			<p class="mt-1 text-xs text-textColor/60">Tulisan</p>
+		</div>
+		<div class="rounded-xl border border-accent/10 bg-accent/5 p-4 text-center">
+			<p class="text-2xl font-bold text-accent sm:text-3xl">{totalTags}</p>
+			<p class="mt-1 text-xs text-textColor/60">Topik</p>
+		</div>
+		<div class="rounded-xl border border-accent/10 bg-accent/5 p-4 text-center">
+			<p class="text-2xl font-bold text-accent sm:text-3xl">±{totalReadingTime}</p>
+			<p class="mt-1 text-xs text-textColor/60">Menit Baca</p>
+		</div>
+	</section>
+
+	<!-- Tags Cloud -->
+	<section class="mb-12">
+		<h2 class="title mb-4 text-lg font-semibold">Topik Populer</h2>
+		<div class="flex flex-wrap gap-2">
+			{
+				tagsWithCount.map(([tag, count]) => (
+					<a
+						class="inline-flex items-center gap-1.5 rounded-full border border-accent/20 px-3 py-1.5 text-xs font-medium text-textColor/70 transition-all hover:border-accent hover:bg-accent/10 hover:text-accent"
+						href={`/tags/${tag}/`}
+					>
+						#{tag}
+						<span class="text-[10px] text-textColor/40">({count})</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- Latest Posts -->
+	<section aria-label="Blog post list">
+		<div class="mb-4 flex items-center justify-between">
+			<h2 class="title text-lg font-semibold">Tulisan Terbaru</h2>
+			<a class="text-xs font-medium text-accent hover:underline" href="/posts/1/">
+				Lihat semua &rarr;
+			</a>
+		</div>
+		<ul class="divide-y divide-accent/10">
 			{
 				allPostsByDate.map((p) => (
-					<li class="flex flex-col gap-x-2 sm:flex-row">
-						<PostPreview post={p} />
+					<li class="flex flex-col gap-x-2 py-4 sm:flex-row sm:items-start">
+						<PostPreview post={p} withDesc={true} />
 					</li>
 				))
 			}
