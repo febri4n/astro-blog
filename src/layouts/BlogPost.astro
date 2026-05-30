@@ -48,6 +48,29 @@ const relatedPosts = sortedPosts
 		{!!headings.length && <TOC headings={headings} />}
 		<article class="flex-grow break-words" data-pagefind-body>
 			<div id="blog-hero"><BlogHero content={post} /></div>
+
+			<!-- Mobile TOC inside article, after hero -->
+			{!!headings.length && (
+				<details class="block lg:hidden mb-6 rounded-lg border border-accent/10 overflow-hidden group">
+					<summary class="flex cursor-pointer select-none items-center gap-2 bg-accent/5 px-4 py-3 text-sm font-semibold text-accent transition-colors hover:bg-accent/10">
+						<span>📑 Daftar Isi</span>
+						<span class="text-xs text-textColor/50">({headings.length})</span>
+						<svg class="ms-auto h-4 w-4 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					</summary>
+					<ul class="px-4 pb-3 pt-1 text-xs space-y-0.5">
+						{headings.map((h) => (
+							<li>
+								<a
+									href={`#${h.slug}`}
+									class={`block hover:text-accent ${h.depth <= 2 ? "py-1" : "py-0.5 ps-3 text-[0.6875rem]"}`}
+								>
+									<span class="me-0.5 text-accent/60">#</span>{h.text}
+								</a>
+							</li>
+						))}
+					</ul>
+				</details>
+			)}
 			<div
 				class="prose prose-sm prose-cactus mt-12 prose-headings:font-semibold prose-headings:text-accent-2 prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-accent prose-headings:before:content-['#'] prose-th:before:content-none"
 			>
