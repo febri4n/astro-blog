@@ -153,13 +153,13 @@ const certs = [
 					rel="noopener noreferrer"
 					title={`${cert.label || cert.name} — ${cert.issuer} (${cert.date})`}
 					class:list={[
-						"group relative inline-flex items-center gap-1.5 rounded-lg border border-accent/10 bg-accent/5 px-2 py-1.5 transition-all hover:border-accent/30",
+						"group relative inline-flex items-center rounded-lg border border-accent/10 bg-accent/5 p-1.5 transition-all hover:border-accent/30",
 						cert.highlight && "border-yellow-500/30 bg-yellow-500/5 hover:border-yellow-500/60",
 						cert.status === "expired" && "hover:grayscale hover:opacity-40",
 					]}
 				>
 					{cert.highlight && (
-						<span class="absolute -right-1 -top-1 text-[8px]">🏆</span>
+						<span class="absolute -right-0.5 -top-0.5 text-[7px]">🏆</span>
 					)}
 					<img
 						src={cert.img}
@@ -167,7 +167,6 @@ const certs = [
 						class="h-6 w-6 object-contain sm:h-7 sm:w-7"
 						loading="lazy"
 					/>
-					<span class="text-[11px] font-medium text-textColor/80">{cert.label || cert.name}</span>
 				</a>
 			))}
 		</div>
