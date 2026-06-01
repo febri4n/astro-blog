@@ -110,17 +110,6 @@ const certBadges: Badge[] = [
       "https://www.credly.com/badges/d22be9eb-5b9d-4deb-9aeb-0fc02866f4d0",
   },
   {
-    id: "aws-restart",
-    name: "AWS re/Start",
-    fullName: "AWS re/Start Graduate",
-    issuer: "Amazon Web Services",
-    date: "Jan 2026",
-    imageUrl:
-      "https://images.credly.com/size/340x340/images/44e2c252-5d19-4574-9646-005f7225bf53/image.png",
-    badgeUrl:
-      "https://www.credly.com/badges/49430155-c9cd-4235-bbf7-932ee1d97d88",
-  },
-  {
     id: "scds-rke2",
     name: "SCDS RKE2",
     fullName: "SUSE Certified Deployment Specialist in Rancher Kubernetes Engine 2",
@@ -155,6 +144,17 @@ const trainingBadges: Badge[] = [
       "https://images.credly.com/size/340x340/images/77796674-2a4e-4a35-823e-9e55e7ee159e/blob",
     badgeUrl:
       "https://www.credly.com/badges/b9579b02-2f89-4e18-ac28-4015f8800fdb",
+  },
+  {
+    id: "aws-restart",
+    name: "AWS re/Start",
+    fullName: "AWS re/Start Graduate",
+    issuer: "Amazon Web Services",
+    date: "Jan 2026",
+    imageUrl:
+      "https://images.credly.com/size/340x340/images/44e2c252-5d19-4574-9646-005f7225bf53/image.png",
+    badgeUrl:
+      "https://www.credly.com/badges/49430155-c9cd-4235-bbf7-932ee1d97d88",
   },
 ];
 ---
@@ -300,7 +300,7 @@ const trainingBadges: Badge[] = [
 
     <div class="grid gap-4 sm:grid-cols-2">
       {certBadges
-        .filter((b) => ["rhcsa", "ace", "aws-restart", "scds-rke2"].includes(b.id))
+        .filter((b) => ["rhcsa", "ace", "scds-rke2"].includes(b.id))
         .map((badge) => (
           <a
             href={badge.badgeUrl}
