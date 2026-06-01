@@ -58,7 +58,7 @@ const projects: Project[] = [
       "Manage kubeconfig file with fzf — switching Kubernetes context lebih cepat",
     link: "https://github.com/febri4n",
     tags: ["Shell", "fzf", "Kubernetes", "CLI"],
-    private: true,
+    private: false,
   },
   {
     name: "rancher-custom-metrics-exporter",
@@ -70,6 +70,12 @@ const projects: Project[] = [
     active: true,
   },
 ];
+
+const publicCount = projects.filter((p) => !p.private).length;
+const heroLabel =
+  publicCount > 0
+    ? `${projects.length} Projects · ${publicCount} Public`
+    : `${projects.length} Projects · Private`;
 ---
 
 <PageLayout meta={meta}>
@@ -78,7 +84,7 @@ const projects: Project[] = [
     <div class="flex flex-col gap-4">
       <div class="mb-1 flex items-center gap-2">
         <span class="inline-block h-3 w-3 animate-pulse rounded-full bg-green-400" />
-        <span class="text-xs font-medium text-green-600 dark:text-green-400">6 Projects · Private</span>
+        <span class="text-xs font-medium text-green-600 dark:text-green-400">{heroLabel}</span>
       </div>
       <h1 class="title text-3xl font-bold leading-tight sm:text-4xl">
         🚀 <span class="text-accent">Projects</span>
