@@ -100,17 +100,18 @@ const projects: Project[] = [
           rel="noopener noreferrer"
           class="group relative flex flex-col gap-3 rounded-lg border border-accent/10 bg-accent/5 p-5 transition-all hover:border-accent/30 hover:shadow-sm"
         >
-          {project.private && (
-            <span class="absolute end-2 top-2 rounded-md border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 text-[10px] font-semibold text-orange-500/90">
-              Private
-            </span>
-          )}
-          {project.active && (
-            <span class="mb-1 inline-flex w-fit items-center gap-1 rounded-full border border-green-500/30 bg-green-500/10 px-2 py-0.5 text-[10px] font-medium text-green-600 dark:text-green-400">
-              <span class="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
-              Active
-            </span>
-          )}
+          <div class="absolute end-2 top-2 flex items-center gap-1.5">
+            {project.active && (
+              <span class="animate-pulse rounded-md border border-green-500/30 bg-green-500/10 px-2 py-0.5 text-[10px] font-semibold text-green-600 dark:text-green-400">
+                Active
+              </span>
+            )}
+            {project.private && (
+              <span class="rounded-md border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 text-[10px] font-semibold text-orange-500/90">
+                Private
+              </span>
+            )}
+          </div>
           <p class="pe-16 font-semibold text-textColor group-hover:text-accent transition-colors">
             {project.name}
           </p>
