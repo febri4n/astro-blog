@@ -1,20 +1,352 @@
 ---
-import aboutImg from "@/assets/about-astro.png";
+import SocialList from "@/components/SocialList.astro";
 import PageLayout from "@/layouts/Base.astro";
-import { Image } from "astro:assets";
 
 const meta = {
-	description: "I am Kubernetes Enthusiast & Cloud Engineer",
-	title: "About",
+  description:
+    "Kubernetes certified engineer — cloud-native, multi-cluster K8s, platform automation.",
+  title: "About",
 };
+
+interface Badge {
+  id: string;
+  name: string;
+  fullName: string;
+  issuer: string;
+  date: string;
+  imageUrl: string;
+  badgeUrl: string;
+  highlight?: boolean;
+}
+
+const kubestronaut: Badge = {
+  id: "kubestronaut",
+  name: "Kubestronaut",
+  fullName: "Kubestronaut",
+  issuer: "The Linux Foundation",
+  date: "Jan 2026",
+  imageUrl:
+    "https://images.credly.com/size/340x340/images/cd6c6449-6814-4613-a2d3-13cf4ac5be4f/image.png",
+  badgeUrl:
+    "https://www.credly.com/badges/92e14239-4c92-4b1c-9cec-bba617caa537",
+  highlight: true,
+};
+
+const certBadges: Badge[] = [
+  {
+    id: "cks",
+    name: "CKS",
+    fullName: "Certified Kubernetes Security Specialist",
+    issuer: "The Linux Foundation",
+    date: "Exp Dec 2027",
+    imageUrl:
+      "https://images.credly.com/size/340x340/images/9945dfcb-1cca-4529-85e6-db1be3782210/kubernetes-security-specialist-logo2.png",
+    badgeUrl:
+      "https://www.credly.com/badges/aea1ab6e-ee64-4f11-9276-824dfefbc1f5",
+  },
+  {
+    id: "cka",
+    name: "CKA",
+    fullName: "Certified Kubernetes Administrator",
+    issuer: "The Linux Foundation",
+    date: "Exp Jan 2027",
+    imageUrl:
+      "https://images.credly.com/size/340x340/images/8b8ed108-e77d-4396-ac59-2504583b9d54/cka_from_cncfsite__281_29.png",
+    badgeUrl:
+      "https://www.credly.com/badges/390f1458-ec0c-45f5-baa1-f0e19f23fa16",
+  },
+  {
+    id: "ckad",
+    name: "CKAD",
+    fullName: "Certified Kubernetes Application Developer",
+    issuer: "The Linux Foundation",
+    date: "Exp Jul 2027",
+    imageUrl:
+      "https://images.credly.com/size/340x340/images/cc8adc83-1dc6-4d57-8e20-22171247e052/blob",
+    badgeUrl:
+      "https://www.credly.com/badges/1e1006de-c8b6-4fc6-bc3d-2d507d1d410b",
+  },
+  {
+    id: "kcsa",
+    name: "KCSA",
+    fullName: "Kubernetes & Cloud Native Security Associate",
+    issuer: "The Linux Foundation",
+    date: "Exp Oct 2027",
+    imageUrl:
+      "https://images.credly.com/size/340x340/images/67dd8a95-8876-4051-9cb9-3d97c204f85a/image.png",
+    badgeUrl:
+      "https://www.credly.com/badges/dca0f393-75dc-445b-8cdd-7c9eb65c880b",
+  },
+  {
+    id: "kcna",
+    name: "KCNA",
+    fullName: "Kubernetes & Cloud Native Associate",
+    issuer: "The Linux Foundation",
+    date: "Exp Sep 2026",
+    imageUrl:
+      "https://images.credly.com/size/340x340/images/f28f1d88-428a-47f6-95b5-7da1dd6c1000/KCNA_badge.png",
+    badgeUrl:
+      "https://www.credly.com/badges/b2eded30-8db8-45b9-9c67-106b1a98296a",
+  },
+  {
+    id: "rhcsa",
+    name: "RHCSA",
+    fullName: "Red Hat Certified System Administrator",
+    issuer: "Red Hat",
+    date: "Exp Jun 2027",
+    imageUrl:
+      "https://images.credly.com/size/340x340/images/572de0ba-2c59-4816-a59d-b0e1687e45ee/image.png",
+    badgeUrl:
+      "https://www.credly.com/badges/290d8ae6-c1a3-41e4-ace9-bac4bb609005",
+  },
+  {
+    id: "ace",
+    name: "ACE",
+    fullName: "Associate Cloud Engineer",
+    issuer: "Google Cloud",
+    date: "Exp Jun 2026",
+    imageUrl:
+      "https://images.credly.com/size/340x340/images/08096465-cbfc-4c3e-93e5-93c5aa61f23e/image.png",
+    badgeUrl:
+      "https://www.credly.com/badges/d22be9eb-5b9d-4deb-9aeb-0fc02866f4d0",
+  },
+  {
+    id: "aws-restart",
+    name: "AWS re/Start",
+    fullName: "AWS re/Start Graduate",
+    issuer: "Amazon Web Services",
+    date: "Jan 2026",
+    imageUrl:
+      "https://images.credly.com/size/340x340/images/44e2c252-5d19-4574-9646-005f7225bf53/image.png",
+    badgeUrl:
+      "https://www.credly.com/badges/49430155-c9cd-4235-bbf7-932ee1d97d88",
+  },
+];
+
+const trainingBadges: Badge[] = [
+  {
+    id: "lfs250",
+    name: "LFS250",
+    fullName: "Kubernetes and Cloud Native Essentials",
+    issuer: "The Linux Foundation",
+    date: "Aug 2024",
+    imageUrl:
+      "https://images.credly.com/size/340x340/images/7404ca0d-98e1-48b6-a2a3-de8d7dcd85b5/blob",
+    badgeUrl:
+      "https://www.credly.com/badges/44216399-5d1a-459f-8251-8efa1b92f106",
+  },
+  {
+    id: "lfs261",
+    name: "LFS261",
+    fullName: "DevOps and SRE Fundamentals",
+    issuer: "The Linux Foundation",
+    date: "May 2025",
+    imageUrl:
+      "https://images.credly.com/size/340x340/images/77796674-2a4e-4a35-823e-9e55e7ee159e/blob",
+    badgeUrl:
+      "https://www.credly.com/badges/b9579b02-2f89-4e18-ac28-4015f8800fdb",
+  },
+];
 ---
 
 <PageLayout meta={meta}>
-	<div class="space-y-6">
-		<h1 class="title">About</h1>
-		<p>
-			Febri4n here!
-      I am Kubernetes Enthusiast & Cloud Engineer
-		</p>
-	</div>
+  <!-- Hero -->
+  <section class="mb-10 mt-4">
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex-1">
+        <div class="mb-2 flex items-center gap-2">
+          <span class="inline-block h-3 w-3 animate-pulse rounded-full bg-green-400" />
+          <span class="text-xs font-medium text-green-600 dark:text-green-400"
+            >Kubestronaut 🏆</span
+          >
+        </div>
+        <h1 class="title mb-3 text-3xl font-bold leading-tight sm:text-4xl">
+          About <span class="text-accent">Me</span>
+        </h1>
+        <p class="max-w-xl text-sm leading-relaxed text-textColor/70">
+          Kubernetes certified engineer with deep expertise in cloud-native
+          architectures, multi-cluster Kubernetes, and platform automation.
+        </p>
+      </div>
+      <div class="flex-shrink-0">
+        <img
+          src="/avatar.jpg"
+          alt="Febri4n avatar"
+          class="h-24 w-24 rounded-2xl object-cover sm:h-28 sm:w-28"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Bio -->
+  <section class="mb-12">
+    <div
+      class="rounded-xl border border-accent/10 bg-accent/5 p-6 leading-relaxed"
+    >
+      <p class="mb-3">
+        <strong>Halo!</strong> Saya
+        <strong class="text-accent">Solihin Febrian Saputra</strong> —
+        seorang Cloud Engineer dengan fokus utama di ekosistem
+        <strong>Kubernetes</strong> dan teknologi <strong>Cloud Native</strong>.
+      </p>
+      <p class="mb-3">
+        Saya memiliki pengalaman hands-on yang kuat dalam membangun dan
+        mengoperasikan platform production-ready menggunakan teknologi CNCF,
+        observability tooling, dan workflow GitOps di atas infrastruktur
+        OpenStack dan hybrid cloud.
+      </p>
+      <p class="text-textColor/70">
+        Blog ini adalah tempat saya mendokumentasikan catatan, tutorial, dan
+        temuan seputar Cloud, DevOps, Linux — dari pengalaman belajar dan
+        ngulik sehari-hari.
+      </p>
+    </div>
+  </section>
+
+  <!-- Social -->
+  <section class="mb-12">
+    <SocialList />
+  </section>
+
+  <!-- Kubestronaut Highlight -->
+  <section class="mb-12">
+    <div
+      class="relative overflow-hidden rounded-xl border border-yellow-500/30 bg-gradient-to-br from-yellow-500/10 via-transparent to-yellow-600/5 p-6"
+    >
+      <div class="flex flex-col items-center gap-4 sm:flex-row">
+        <a
+          href={kubestronaut.badgeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex-shrink-0 transition-transform hover:scale-105"
+        >
+          <img
+            src={kubestronaut.imageUrl}
+            alt={kubestronaut.name}
+            class="h-20 w-20 sm:h-24 sm:w-24"
+          />
+        </a>
+        <div>
+          <div class="mb-1 flex items-center gap-2">
+            <h3 class="text-lg font-bold text-yellow-600 dark:text-yellow-400">
+              {kubestronaut.name}
+            </h3>
+            <span class="rounded-full bg-yellow-500/20 px-2 py-0.5 text-xs font-medium text-yellow-600 dark:text-yellow-400"
+              >🏆 Pencapaian Tertinggi</span
+            >
+          </div>
+          <p class="text-sm text-textColor/80">
+            Salah satu dari sedikit praktisi Kubernetes di Indonesia yang
+            berhasil meraih gelar Kubestronaut — dengan menyelesaikan
+            <strong>5 sertifikasi Kubernetes resmi</strong> dari Cloud Native
+            Computing Foundation (CNCF).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kubernetes Certifications -->
+  <section class="mb-10">
+    <h2 class="title mb-1 text-lg font-semibold">
+      ☸️ Kubernetes Certifications
+    </h2>
+    <p class="mb-5 text-sm text-textColor/60">
+      Sertifikasi resmi dari CNCF / The Linux Foundation
+    </p>
+
+    <div
+      class="grid gap-4 sm:grid-cols-2"
+    >
+      {certBadges
+        .filter((b) =>
+          ["cks", "cka", "ckad", "kcsa", "kcna"].includes(b.id)
+        )
+        .map((badge) => (
+          <a
+            href={badge.badgeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-4 rounded-lg border border-accent/10 bg-accent/5 p-4 transition-all hover:border-accent/30 hover:shadow-sm"
+          >
+            <img
+              src={badge.imageUrl}
+              alt={badge.name}
+              class="h-14 w-14 flex-shrink-0 sm:h-16 sm:w-16"
+            />
+            <div class="min-w-0">
+              <p class="font-semibold text-textColor">{badge.name}</p>
+              <p class="truncate text-xs text-textColor/60">{badge.fullName}</p>
+              <p class="mt-0.5 text-xs text-textColor/50">{badge.date}</p>
+            </div>
+          </a>
+        ))}
+    </div>
+  </section>
+
+  <!-- Other Certifications -->
+  <section class="mb-10">
+    <h2 class="title mb-1 text-lg font-semibold">
+      🎖️ Sertifikasi Lainnya
+    </h2>
+    <p class="mb-5 text-sm text-textColor/60">
+      Red Hat, Google Cloud, AWS
+    </p>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      {certBadges
+        .filter((b) => ["rhcsa", "ace", "aws-restart"].includes(b.id))
+        .map((badge) => (
+          <a
+            href={badge.badgeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-4 rounded-lg border border-accent/10 bg-accent/5 p-4 transition-all hover:border-accent/30 hover:shadow-sm"
+          >
+            <img
+              src={badge.imageUrl}
+              alt={badge.name}
+              class="h-14 w-14 flex-shrink-0 sm:h-16 sm:w-16"
+            />
+            <div class="min-w-0">
+              <p class="font-semibold text-textColor">{badge.name}</p>
+              <p class="truncate text-xs text-textColor/60">{badge.fullName}</p>
+              <p class="mt-0.5 text-xs text-textColor/50">{badge.date}</p>
+            </div>
+          </a>
+        ))}
+    </div>
+  </section>
+
+  <!-- Training -->
+  <section class="mb-12">
+    <h2 class="title mb-1 text-lg font-semibold">📘 Training & Workshop</h2>
+    <p class="mb-5 text-sm text-textColor/60">
+      The Linux Foundation — kursus pendukung
+    </p>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      {trainingBadges.map((badge) => (
+        <a
+          href={badge.badgeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-4 rounded-lg border border-accent/10 bg-accent/5 p-4 transition-all hover:border-accent/30 hover:shadow-sm"
+        >
+          <img
+            src={badge.imageUrl}
+            alt={badge.name}
+            class="h-14 w-14 flex-shrink-0 sm:h-16 sm:w-16"
+          />
+          <div class="min-w-0">
+            <p class="font-semibold text-textColor">{badge.name}</p>
+            <p class="truncate text-xs text-textColor/60">
+              {badge.fullName}
+            </p>
+            <p class="mt-0.5 text-xs text-textColor/50">{badge.date}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
 </PageLayout>
