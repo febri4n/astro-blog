@@ -1,5 +1,4 @@
 ---
-import SocialList from "@/components/SocialList.astro";
 import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
@@ -121,6 +120,17 @@ const certBadges: Badge[] = [
     badgeUrl:
       "https://www.credly.com/badges/49430155-c9cd-4235-bbf7-932ee1d97d88",
   },
+  {
+    id: "scds-rke2",
+    name: "SCDS RKE2",
+    fullName: "SUSE Certified Deployment Specialist in Rancher Kubernetes Engine 2",
+    issuer: "SUSE",
+    date: "Mar 2026 · No Expiry",
+    imageUrl:
+      "https://pdf.ms.credential.net/badge/image?env=production&credential=1yakuf5d",
+    badgeUrl:
+      "https://badges.suse.com/dfe755ed-c09b-42e7-8ef0-2ea18c62f327",
+  },
 ];
 
 const trainingBadges: Badge[] = [
@@ -201,11 +211,6 @@ const trainingBadges: Badge[] = [
         ngulik sehari-hari.
       </p>
     </div>
-  </section>
-
-  <!-- Social -->
-  <section class="mb-12">
-    <SocialList />
   </section>
 
   <!-- Kubestronaut Highlight -->
@@ -290,12 +295,12 @@ const trainingBadges: Badge[] = [
       🎖️ Sertifikasi Lainnya
     </h2>
     <p class="mb-5 text-sm text-textColor/60">
-      Red Hat, Google Cloud, AWS
+      Red Hat, Google Cloud, AWS, SUSE
     </p>
 
     <div class="grid gap-4 sm:grid-cols-2">
       {certBadges
-        .filter((b) => ["rhcsa", "ace", "aws-restart"].includes(b.id))
+        .filter((b) => ["rhcsa", "ace", "aws-restart", "scds-rke2"].includes(b.id))
         .map((badge) => (
           <a
             href={badge.badgeUrl}
