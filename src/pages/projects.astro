@@ -12,6 +12,7 @@ interface Project {
   link: string;
   tags: string[];
   private: boolean;
+  active?: boolean;
 }
 
 const projects: Project[] = [
@@ -22,6 +23,7 @@ const projects: Project[] = [
     link: "https://github.com/febri4n",
     tags: ["Python", "Kopf", "Kubernetes Operator", "HAProxy", "REST API"],
     private: true,
+    active: true,
   },
   {
     name: "dbalance-ingress-haproxy",
@@ -30,6 +32,7 @@ const projects: Project[] = [
     link: "https://github.com/febri4n",
     tags: ["Helm", "HAProxy Ingress", "Kubernetes", "LoadBalancer"],
     private: true,
+    active: true,
   },
   {
     name: "kubectl-dbalance",
@@ -38,6 +41,7 @@ const projects: Project[] = [
     link: "https://github.com/febri4n",
     tags: ["Go", "kubectl-plugin", "Kubernetes", "CLI"],
     private: true,
+    active: true,
   },
   {
     name: "rancherctl",
@@ -46,6 +50,7 @@ const projects: Project[] = [
     link: "https://github.com/febri4n",
     tags: ["Go", "CLI", "Rancher", "Kubernetes", "REST API"],
     private: true,
+    active: true,
   },
   {
     name: "kubeconfig-manager",
@@ -62,6 +67,7 @@ const projects: Project[] = [
     link: "https://github.com/febri4n",
     tags: ["Go", "Prometheus", "Rancher", "Kubernetes", "Metrics"],
     private: true,
+    active: true,
   },
 ];
 ---
@@ -97,6 +103,12 @@ const projects: Project[] = [
           {project.private && (
             <span class="absolute end-2 top-2 rounded-md border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 text-[10px] font-semibold text-orange-500/90">
               Private
+            </span>
+          )}
+          {project.active && (
+            <span class="mb-1 inline-flex w-fit items-center gap-1 rounded-full border border-green-500/30 bg-green-500/10 px-2 py-0.5 text-[10px] font-medium text-green-600 dark:text-green-400">
+              <span class="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
+              Active
             </span>
           )}
           <p class="pe-16 font-semibold text-textColor group-hover:text-accent transition-colors">
