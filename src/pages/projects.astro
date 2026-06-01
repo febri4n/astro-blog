@@ -112,9 +112,13 @@ const heroLabel =
                 Active
               </span>
             )}
-            {project.private && (
+            {project.private ? (
               <span class="rounded-md border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 text-[10px] font-semibold text-orange-500/90">
                 Private
+              </span>
+            ) : (
+              <span class="rounded-md border border-blue-500/30 bg-blue-500/10 px-2 py-0.5 text-[10px] font-semibold text-blue-500">
+                Public
               </span>
             )}
           </div>
