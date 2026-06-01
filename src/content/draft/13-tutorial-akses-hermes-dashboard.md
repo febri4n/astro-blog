@@ -1,6 +1,6 @@
 ---
 title: "Akses Dashboard Hermes via SSH Port Forwarding"
-description: "Cara menjalankan web dashboard Hermes Agent di VPS dan mengaksesnya dari browser lokal menggunakan SSH port forwarding melalui Termius, tanpa membuka port ke internet."
+description: "Cara menjalankan web dashboard Hermes Agent di VPS dan mengaksesnya dari browser lokal menggunakan SSH port forwarding via Termius, tanpa membuka port terbuka."
 tags: ["hermes", "tutorial", "devops", "ssh", "linux"]
 draft: true
 ---
