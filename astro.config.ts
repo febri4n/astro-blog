@@ -5,6 +5,7 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import remarkUnwrapImages from "remark-unwrap-images";
 import rehypeExternalLinks from "rehype-external-links";
+import rehypeRaw from "rehype-raw";
 import { remarkReadingTime } from "./src/utils/remark-reading-time";
 import { remarkCallout } from "./src/utils/remark-callout.js";
 import icon from "astro-icon";
@@ -18,6 +19,7 @@ export default defineConfig({
 	markdown: {
 				remarkPlugins: [remarkUnwrapImages, remarkReadingTime, remarkCallout],
 		rehypePlugins: [
+			rehypeRaw,
 			[
 				rehypeExternalLinks,
 				{
