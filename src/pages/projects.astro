@@ -72,10 +72,8 @@ const projects: Project[] = [
 ];
 
 const publicCount = projects.filter((p) => !p.private).length;
-const heroLabel =
-  publicCount > 0
-    ? `${projects.length} Projects · ${publicCount} Public`
-    : `${projects.length} Projects · Private`;
+const privateCount = projects.filter((p) => p.private).length;
+const heroLabel = `${projects.length} Projects · ${publicCount} Public · ${privateCount} Private`;
 ---
 
 <PageLayout meta={meta}>
