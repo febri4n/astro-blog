@@ -10,7 +10,7 @@ interface Project {
   name: string;
   description: string;
   link: string;
-  lang?: string;
+  tags: string[];
 }
 
 const projects: Project[] = [
@@ -19,31 +19,35 @@ const projects: Project[] = [
     description:
       "DBalance Operator & DBalance plugin for managing HAProxy load balancer configurations via DBalance API using Python3 & Kopf",
     link: "https://github.com/febri4n/dbalance-kopf",
+    tags: ["Python", "Kopf", "Kubernetes Operator", "HAProxy", "REST API"],
   },
   {
     name: "dbalance-ingress-haproxy",
     description:
       "A Helm chart for installing HAProxy Ingress Controller with automatic DBalance LoadBalancer integration",
     link: "https://github.com/febri4n/dbalance-ingress-haproxy",
+    tags: ["Helm", "HAProxy Ingress", "Kubernetes", "LoadBalancer"],
   },
   {
     name: "kubectl-dbalance",
     description:
       "A kubectl plugin for managing dbalance load balancers directly from kubectl",
     link: "https://github.com/febri4n/kubectl-dbalance",
+    tags: ["Go", "kubectl-plugin", "Kubernetes", "CLI"],
   },
   {
     name: "rancherctl",
     description:
       "CLI untuk mengelola Rancher via API — terinspirasi dari kubectl",
     link: "https://github.com/febri4n/rancherctl",
+    tags: ["Go", "CLI", "Rancher", "Kubernetes", "REST API"],
   },
   {
     name: "kubeconfig-manager",
     description:
       "Manage kubeconfig file with fzf — switching Kubernetes context lebih cepat",
     link: "https://github.com/febri4n/kubeconfig-manager",
-    lang: "Shell",
+    tags: ["Shell", "fzf", "Kubernetes", "CLI"],
   },
 ];
 ---
@@ -70,21 +74,21 @@ const projects: Project[] = [
           href={project.link}
           target="_blank"
           rel="noopener noreferrer"
-          class="group flex flex-col gap-2 rounded-lg border border-accent/10 bg-accent/5 p-5 transition-all hover:border-accent/30 hover:shadow-sm"
+          class="group flex flex-col gap-3 rounded-lg border border-accent/10 bg-accent/5 p-5 transition-all hover:border-accent/30 hover:shadow-sm"
         >
-          <div class="flex items-center justify-between">
-            <p class="font-semibold text-textColor group-hover:text-accent transition-colors">
-              {project.name}
-            </p>
-            {project.lang && (
-              <span class="rounded-full border border-accent/20 px-2 py-0.5 text-[10px] font-medium text-textColor/50">
-                {project.lang}
-              </span>
-            )}
-          </div>
+          <p class="font-semibold text-textColor group-hover:text-accent transition-colors">
+            {project.name}
+          </p>
           <p class="text-xs leading-relaxed text-textColor/60">
             {project.description}
           </p>
+          <div class="flex flex-wrap gap-1.5">
+            {project.tags.map((tag) => (
+              <span class="rounded-full border border-accent/15 bg-accent/10 px-2 py-0.5 text-[10px] font-medium text-accent/80">
+                {tag}
+              </span>
+            ))}
+          </div>
           <p class="mt-auto pt-1 text-[11px] text-accent/60 group-hover:text-accent transition-colors">
             GitHub ↗
           </p>
