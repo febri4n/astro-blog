@@ -27,9 +27,15 @@ Sebelum memulai, pastikan hal berikut sudah tersedia:
 
 GitHub Discussions harus diaktifkan terlebih dahulu di repository blog.
 
+> [!TIP] Gunakan Kategori Announcements
+> Giscus menggunakan kategori Announcements secara default. Kategori ini membatasi siapa yang bisa membuat thread baru — hanya repository owner. Pengguna lain hanya bisa berkomentar.
+
 Buka repository di GitHub, masuk ke **Settings** &gt; **Features**, centang **Discussions**. Setelah itu akan muncul tab **Discussions** di repository.
 
 Selanjutnya, buat satu kategori untuk komentar. Giscus menggunakan kategori **Announcements** secara default, karena kategori ini hanya mengizinkan repository owner yang bisa membuat thread baru. Pengguna lain hanya bisa berkomentar.
+
+> [!NOTE] Discussions vs Issues
+> Giscus menggunakan GitHub Discussions, bukan Issues. Perbedaannya: Discussions punya fitur kategorisasi, voting, dan tampilan forum yang lebih cocok untuk komentar blog. Issues lebih cocok untuk tracking bugs.
 
 ### Step 2: Install Giscus App
 
@@ -48,6 +54,9 @@ Halaman akan menampilkan konfigurasi yang diperlukan. Bagian penting yang perlu 
 | `data-category` | Nama kategori (Announcements) |
 | `data-category-id` | ID unik kategori |
 | `data-mapping` | Mapping pathname (gunakan `pathname`) |
+
+> [!WARNING] Repository Harus Publik
+> Giscus hanya bisa digunakan pada repository **publik**. Repository private tidak bisa menggunakan Giscus karena GitHub Discussions untuk repo private tidak mendukung autentikasi eksternal.
 
 Untuk mendapatkan `data-repo-id` dan `data-category-id`, bisa menggunakan browser console setelah memilih kategori:
 
@@ -153,6 +162,12 @@ Setelah semua terpasang, coba lakukan hal berikut:
 3. Tes login dengan akun GitHub
 4. Coba toggle dark/light mode, pastikan tema komentar ikut berubah
 5. Kirim komentar test, lalu cek di GitHub repository &gt; Discussions &gt; Announcements
+
+> [!CAUTION] Cache Browser
+> Jika Giscus tidak muncul setelah setup, coba hapus cache browser atau buka di tab incognito. Kadang script Giscus butuh hard refresh (Ctrl+Shift+R) untuk mendeteksi konfigurasi baru.
+
+> [!IMPORTANT] Data Tersimpan di GitHub
+> Semua komentar disimpan di GitHub Discussions repository kamu. Jika repository dihapus, komentar akan hilang. Pastikan repository tetap eksis selama blog masih aktif.
 
 ### Ringkasan
 

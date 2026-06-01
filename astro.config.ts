@@ -6,6 +6,7 @@ import sitemap from "@astrojs/sitemap";
 import remarkUnwrapImages from "remark-unwrap-images";
 import rehypeExternalLinks from "rehype-external-links";
 import { remarkReadingTime } from "./src/utils/remark-reading-time";
+import { remarkCallout } from "./src/utils/remark-callout.js";
 import icon from "astro-icon";
 import expressiveCode from "astro-expressive-code";
 import { expressiveCodeOptions } from "./src/site.config";
@@ -15,7 +16,7 @@ export default defineConfig({
 	// ! Please remember to replace the following site property with your own domain
 	site: "https://astro-cactus.chriswilliams.dev/",
 	markdown: {
-		remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
+				remarkPlugins: [remarkUnwrapImages, remarkReadingTime, remarkCallout],
 		rehypePlugins: [
 			[
 				rehypeExternalLinks,

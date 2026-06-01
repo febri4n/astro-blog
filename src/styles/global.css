@@ -1,35 +1,107 @@
+/* tailwindcss components */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-	:root,
-	:root[data-theme="light"] {
-		color-scheme: light;
-		/* https://tailwindcss.com/docs/customizing-colors#using-css-variables */
-		--theme-bg: 0deg 0% 98%;
-		--theme-link: 172deg 18% 41%;
-		--theme-text: 203deg 11% 15%;
-		--theme-accent: 351deg 66% 48%;
-		--theme-accent-2: 0deg 0% 7%;
-		--theme-quote: 351deg 66% 48%;
-	}
+  html {
+    scroll-behavior: smooth;
+  }
 
-	:root[data-theme="dark"] {
-		color-scheme: dark;
-		--theme-bg: 210deg 6% 12%;
-		--theme-link: 330deg 49% 67%;
-		--theme-text: 220deg 3% 79%;
-		--theme-accent: 159deg 64% 45%;
-		--theme-accent-2: 0deg 0% 93%;
-		--theme-quote: 102deg 100% 86%;
-	}
+  body {
+    max-width: 48rem;
+    @apply mx-auto flex min-h-dvh flex-col px-8 pt-16 font-mono text-sm font-[400] antialiased;
+    background-color: hsl(var(--theme-bg) / 1);
+    color: hsl(var(--theme-text) / 1);
+  }
 
-	html {
-		@apply scroll-smooth;
-	}
+  .container {
+    width: 100%;
+  }
+}
 
-	body {
-		@apply mx-auto flex min-h-screen max-w-3xl flex-col bg-bgColor px-8 pt-16 font-mono text-sm font-normal text-textColor antialiased;
-	}
+/*  Cactus link style  */
+.cactus-link {
+  background-size: 100% 6px;
+  background-position: bottom;
+  background-repeat: repeat-x;
+  background-image: linear-gradient(
+    transparent,
+    transparent 5px,
+    hsl(var(--theme-text)) 5px,
+    hsl(var(--theme-text))
+  );
+}
+
+.cactus-link:hover {
+  background-image: linear-gradient(
+    transparent,
+    transparent 4px,
+    hsl(var(--theme-link)) 4px,
+    hsl(var(--theme-link))
+  );
+}
+
+.title {
+  @apply text-2xl font-semibold text-accent-2;
+}
+
+/* ── DocMost-style Callout Boxes ── */
+.callout {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  border-left-width: 4px;
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
+
+.callout > p:first-child {
+  font-weight: 600;
+  margin-top: 0;
+}
+
+/* Light mode */
+.callout-note {
+  border-color: #0284c7;
+  background-color: #f0f9ff;
+}
+.callout-tip {
+  border-color: #059669;
+  background-color: #ecfdf5;
+}
+.callout-important {
+  border-color: #7c3aed;
+  background-color: #f5f3ff;
+}
+.callout-warning {
+  border-color: #d97706;
+  background-color: #fffbeb;
+}
+.callout-caution {
+  border-color: #e11d48;
+  background-color: #fff1f2;
+}
+
+/* Dark mode */
+[data-theme="dark"] .callout-note {
+  border-color: #38bdf8;
+  background-color: rgb(8 47 73 / 0.4);
+}
+[data-theme="dark"] .callout-tip {
+  border-color: #34d399;
+  background-color: rgb(2 44 34 / 0.4);
+}
+[data-theme="dark"] .callout-important {
+  border-color: #a78bfa;
+  background-color: rgb(46 16 101 / 0.4);
+}
+[data-theme="dark"] .callout-warning {
+  border-color: #fbbf24;
+  background-color: rgb(66 32 6 / 0.4);
+}
+[data-theme="dark"] .callout-caution {
+  border-color: #fb7185;
+  background-color: rgb(76 5 25 / 0.4);
 }
