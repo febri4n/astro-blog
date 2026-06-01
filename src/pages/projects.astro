@@ -1,0 +1,156 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+  description: "Projects and tooling around Kubernetes, Cloud Native, and platform automation.",
+  title: "Projects",
+};
+
+interface Project {
+  name: string;
+  description: string;
+  link: string;
+  lang?: string;
+}
+
+const projects: Project[] = [
+  {
+    name: "dbalance-kopf",
+    description:
+      "DBalance Operator & DBalance plugin for managing HAProxy load balancer configurations via DBalance API using Python3 & Kopf",
+    link: "https://github.com/febri4n/dbalance-kopf",
+  },
+  {
+    name: "dbalance-ingress-haproxy",
+    description:
+      "A Helm chart for installing HAProxy Ingress Controller with automatic DBalance LoadBalancer integration",
+    link: "https://github.com/febri4n/dbalance-ingress-haproxy",
+  },
+  {
+    name: "kubectl-dbalance",
+    description:
+      "A kubectl plugin for managing dbalance load balancers directly from kubectl",
+    link: "https://github.com/febri4n/kubectl-dbalance",
+  },
+  {
+    name: "rancherctl",
+    description:
+      "CLI untuk mengelola Rancher via API — terinspirasi dari kubectl",
+    link: "https://github.com/febri4n/rancherctl",
+  },
+  {
+    name: "kubeconfig-manager",
+    description:
+      "Manage kubeconfig file with fzf — switching Kubernetes context lebih cepat",
+    link: "https://github.com/febri4n/kubeconfig-manager",
+    lang: "Shell",
+  },
+  {
+    name: "cluster-api-openstack-kamaji",
+    description:
+      "Cluster API OpenStack with Kamaji Control Plane Provider",
+    link: "https://github.com/febri4n/cluster-api-openstack-kamaji",
+  },
+  {
+    name: "cluster-api-openstack-k0smotron",
+    description:
+      "Cluster API OpenStack with K0smotron Control Plane Provider",
+    link: "https://github.com/febri4n/cluster-api-openstack-k0smotron",
+  },
+  {
+    name: "kubevirt-fundamental",
+    description: "Running VM on Kubernetes — belajar KubeVirt",
+    link: "https://github.com/febri4n/kubevirt-fundamental",
+  },
+  {
+    name: "rbac-teleport-k8s",
+    description:
+      "ClusterRole & ClusterRoleBinding untuk Teleport K8s integration",
+    link: "https://github.com/febri4n/rbac-teleport-k8s",
+  },
+  {
+    name: "npm-api",
+    description:
+      "Manage Nginx Proxy Manager with API",
+    link: "https://github.com/febri4n/npm-api",
+  },
+  {
+    name: "kamaji-tcp-health-exporter",
+    description:
+      "Custom Prometheus Exporter for monitoring Tenant Cluster Endpoint health",
+    link: "https://github.com/febri4n/kamaji-tcp-health-exporter",
+    lang: "Go",
+  },
+  {
+    name: "rancher-fleet-gitops",
+    description:
+      "Testing Rancher Fleet — GitOps deployment",
+    link: "https://github.com/febri4n/rancher-fleet-gitops",
+  },
+  {
+    name: "workshop-kubernetes-gitops",
+    description:
+      "GitOps workshop using Flux CD, GitLab CI, Harbor and RKE2 Cluster",
+    link: "https://github.com/febri4n/workshop-kubernetes-gitops",
+    lang: "HTML",
+  },
+  {
+    name: "jenkins-shared-library",
+    description: "Jenkins shared library untuk pipeline automation",
+    link: "https://github.com/febri4n/jenkins-shared-library",
+    lang: "Groovy",
+  },
+  {
+    name: "dockerfile",
+    description: "Dockerfile command list with examples",
+    link: "https://github.com/febri4n/dockerfile",
+    lang: "Go",
+  },
+];
+---
+
+<PageLayout meta={meta}>
+  <!-- Hero -->
+  <section class="mb-10 mt-4">
+    <div class="flex flex-col gap-4">
+      <h1 class="title text-3xl font-bold leading-tight sm:text-4xl">
+        🚀 <span class="text-accent">Projects</span>
+      </h1>
+      <p class="max-w-xl text-sm leading-relaxed text-textColor/70">
+        Tooling, operator, dan automation yang gue buat seputar Kubernetes,
+        Cloud Native, dan platform engineering.
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section>
+    <div class="grid gap-4 sm:grid-cols-2">
+      {projects.map((project) => (
+        <a
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex flex-col gap-2 rounded-lg border border-accent/10 bg-accent/5 p-5 transition-all hover:border-accent/30 hover:shadow-sm"
+        >
+          <div class="flex items-center justify-between">
+            <p class="font-semibold text-textColor group-hover:text-accent transition-colors">
+              {project.name}
+            </p>
+            {project.lang && (
+              <span class="rounded-full border border-accent/20 px-2 py-0.5 text-[10px] font-medium text-textColor/50">
+                {project.lang}
+              </span>
+            )}
+          </div>
+          <p class="text-xs leading-relaxed text-textColor/60">
+            {project.description}
+          </p>
+          <p class="mt-auto pt-1 text-[11px] text-accent/60 group-hover:text-accent transition-colors">
+            GitHub ↗
+          </p>
+        </a>
+      ))}
+    </div>
+  </section>
+</PageLayout>
