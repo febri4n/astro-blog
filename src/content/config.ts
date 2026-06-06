@@ -44,4 +44,15 @@ const draft = defineCollection({
 	}),
 });
 
-export const collections = { post, draft };
+const lamaran = defineCollection({
+	type: "content",
+	schema: z.object({
+		title: z.string().max(100),
+		description: z.string().min(30).max(200),
+		publishDate: z.string().or(z.date()).transform((val) => new Date(val)).optional(),
+		tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
+		draft: z.boolean().default(true),
+	}),
+});
+
+export const collections = { post, draft, lamaran };
