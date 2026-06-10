@@ -40,10 +40,6 @@ export const menuLinks: Array<{ title: string; path: string }> = [
 		title: "Projects",
 		path: "/projects/",
 	},
-	{
-		title: "CV",
-		path: "https://cv.febri4n.my.id/",
-	},
 ];
 
 // https://expressive-code.com/reference/configuration/
