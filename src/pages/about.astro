@@ -120,6 +120,17 @@ const certBadges: Badge[] = [
     badgeUrl:
       "https://badges.suse.com/dfe755ed-c09b-42e7-8ef0-2ea18c62f327",
   },
+  {
+    id: "scds-suse-ai",
+    name: "SCDS SUSE AI",
+    fullName: "SUSE Certified Deployment Specialist in SUSE AI",
+    issuer: "SUSE",
+    date: "Jun 2026 · Exp Jun 2028",
+    imageUrl:
+      "/badges/suse-ai.png",
+    badgeUrl:
+      "https://badges.suse.com/151683a3-20b8-461b-b40c-b05bc49ed936",
+  },
 ];
 
 const trainingBadges: Badge[] = [
@@ -300,7 +311,7 @@ const trainingBadges: Badge[] = [
 
     <div class="grid gap-4 sm:grid-cols-2">
       {certBadges
-        .filter((b) => ["rhcsa", "ace", "scds-rke2"].includes(b.id))
+        .filter((b) => ["rhcsa", "ace", "scds-rke2", "scds-suse-ai"].includes(b.id))
         .map((badge) => (
           <a
             href={badge.badgeUrl}
