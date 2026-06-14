@@ -1,5 +1,6 @@
 ---
 import PageLayout from "@/layouts/Base.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
 
 const meta = {
   description: "Projects and tooling around Kubernetes, Cloud Native, and platform automation.",
@@ -13,6 +14,7 @@ interface Project {
   tags: string[];
   private: boolean;
   active?: boolean;
+  category: "production" | "exploration";
 }
 
 const projects: Project[] = [
@@ -24,6 +26,7 @@ const projects: Project[] = [
     tags: ["Python", "Kopf", "Kubernetes Operator", "HAProxy", "REST API"],
     private: true,
     active: true,
+    category: "production",
   },
   {
     name: "dbalance-ingress-haproxy",
@@ -33,6 +36,7 @@ const projects: Project[] = [
     tags: ["Helm", "HAProxy Ingress", "Kubernetes", "LoadBalancer"],
     private: true,
     active: true,
+    category: "production",
   },
   {
     name: "kubectl-dbalance",
@@ -42,6 +46,7 @@ const projects: Project[] = [
     tags: ["Go", "kubectl-plugin", "Kubernetes", "CLI"],
     private: true,
     active: true,
+    category: "production",
   },
   {
     name: "rancherctl",
@@ -51,6 +56,7 @@ const projects: Project[] = [
     tags: ["Go", "CLI", "Rancher", "Kubernetes", "REST API"],
     private: true,
     active: true,
+    category: "production",
   },
   {
     name: "kubeconfig-manager",
@@ -59,6 +65,7 @@ const projects: Project[] = [
     link: "https://github.com/febri4n",
     tags: ["Shell", "fzf", "Kubernetes", "CLI"],
     private: false,
+    category: "production",
   },
   {
     name: "rancher-custom-metrics-exporter",
@@ -68,9 +75,21 @@ const projects: Project[] = [
     tags: ["Go", "Prometheus", "Rancher", "Kubernetes", "Metrics"],
     private: true,
     active: true,
+    category: "production",
+  },
+  {
+    name: "loker.febri4n.my.id",
+    description:
+      "Aggregator lowongan IT/Cloud/DevOps dari Glints, Indeed, Kalibrr, Dealls — auto-scrape tiap hari pakai Firecrawl + GitHub Actions",
+    link: "https://loker.febri4n.my.id",
+    tags: ["Astro", "Python", "Firecrawl", "SQLite", "Cloudflare Pages"],
+    private: false,
+    category: "exploration",
   },
 ];
 
+const productionProjects = projects.filter((p) => p.category === "production");
+const explorationProjects = projects.filter((p) => p.category === "exploration");
 const publicCount = projects.filter((p) => !p.private).length;
 const privateCount = projects.filter((p) => p.private).length;
 const heroLabel = `${projects.length} Projects · ${publicCount} Public · ${privateCount} Private`;
@@ -94,49 +113,38 @@ const heroLabel = `${projects.length} Projects · ${publicCount} Public · ${pri
     </div>
   </section>
 
-  <!-- Projects Grid -->
-  <section>
+  <!-- Production Projects -->
+  <section class="mb-10">
+    <div class="mb-1 flex items-center gap-2">
+      <span class="inline-block h-3 w-3 rounded-full bg-accent" />
+      <h2 class="text-lg font-semibold text-textColor">🔥 Production</h2>
+      <span class="text-xs text-textColor/50">({productionProjects.length})</span>
+    </div>
+    <p class="mb-5 text-sm text-textColor/60">
+      Project yang aktif dipakai di production environment
+    </p>
+
     <div class="grid gap-4 sm:grid-cols-2">
-      {projects.map((project) => (
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group relative flex flex-col gap-3 rounded-lg border border-accent/10 bg-accent/5 p-5 transition-all hover:border-accent/30 hover:shadow-sm"
-        >
-          <div class="absolute end-2 top-2 flex items-center gap-1.5">
-            {project.active && (
-              <span class="animate-pulse rounded-md border border-green-500/30 bg-green-500/10 px-2 py-0.5 text-[10px] font-semibold text-green-600 dark:text-green-400">
-                Active
-              </span>
-            )}
-            {project.private ? (
-              <span class="rounded-md border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 text-[10px] font-semibold text-orange-500/90">
-                Private
-              </span>
-            ) : (
-              <span class="rounded-md border border-blue-500/30 bg-blue-500/10 px-2 py-0.5 text-[10px] font-semibold text-blue-500">
-                Public
-              </span>
-            )}
-          </div>
-          <p class="pe-24 font-semibold text-textColor group-hover:text-accent transition-colors">
-            {project.name}
-          </p>
-          <p class="text-xs leading-relaxed text-textColor/60">
-            {project.description}
-          </p>
-          <div class="flex flex-wrap gap-1.5">
-            {project.tags.map((tag) => (
-              <span class="rounded-full border border-accent/15 bg-accent/10 px-2 py-0.5 text-[10px] font-medium text-accent/80">
-                {tag}
-              </span>
-            ))}
-          </div>
-          <p class="mt-auto pt-1 text-[11px] text-accent/60 group-hover:text-accent transition-colors">
-            GitHub ↗
-          </p>
-        </a>
+      {productionProjects.map((project) => (
+        <ProjectCard {...project} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Exploration Projects -->
+  <section>
+    <div class="mb-1 flex items-center gap-2">
+      <span class="inline-block h-3 w-3 rounded-full bg-yellow-400" />
+      <h2 class="text-lg font-semibold text-textColor">🧪 Exploration</h2>
+      <span class="text-xs text-textColor/50">({explorationProjects.length})</span>
+    </div>
+    <p class="mb-5 text-sm text-textColor/60">
+      Project pembelajaran dan eksperimen pribadi
+    </p>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      {explorationProjects.map((project) => (
+        <ProjectCard {...project} />
       ))}
     </div>
   </section>
