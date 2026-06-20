@@ -110,7 +110,7 @@ const talks: Talk[] = [
     event: "Datacomm Tech Series — DCloud",
     title:
       "Building Continuous Development & Operations with Kubernetes & CI/CD",
-    role: "Speaker — Cloud Development Team",
+    role: "Solihin Febrian Saputra as a team in Cloud Development",
     date: "Kamis, 4 Juni 2026",
     location: "Grha Datacomm, Jakarta Selatan",
     coco: "Bayu Jayasukma (DCloud Product Specialist)",
@@ -154,25 +154,8 @@ const talks: Talk[] = [
     </div>
   </section>
 
-  <!-- Speaker / Talks -->
-  <section class="mb-10">
-    <div class="mb-1 flex items-center gap-2">
-      <h2 class="text-lg font-semibold text-textColor">🎤 Speaker</h2>
-      <span class="text-xs text-textColor/50">({talks.length})</span>
-    </div>
-    <p class="mb-5 text-sm text-textColor/60">
-      Tech talks dan workshop yang pernah diisi
-    </p>
-
-    <div class="grid gap-4 sm:grid-cols-2">
-      {talks.map((talk) => (
-        <TalkCard {...talk} />
-      ))}
-    </div>
-  </section>
-
   <!-- Exploration Projects -->
-  <section>
+  <section class="mb-10">
     <div class="mb-1 flex items-center gap-2">
       <h2 class="text-lg font-semibold text-textColor">🧪 Exploration</h2>
       <span class="text-xs text-textColor/50">({explorationProjects.length})</span>
@@ -184,6 +167,23 @@ const talks: Talk[] = [
     <div class="grid gap-4 sm:grid-cols-2">
       {explorationProjects.map((project) => (
         <ProjectCard {...project} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Speaker / Talks -->
+  <section>
+    <div class="mb-1 flex items-center gap-2">
+      <h2 class="text-lg font-semibold text-textColor">🎤 Speaker</h2>
+      <span class="text-xs text-textColor/50">({talks.length})</span>
+    </div>
+    <p class="mb-5 text-sm text-textColor/60">
+      Tech talks dan workshop yang pernah diisi
+    </p>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      {talks.map((talk) => (
+        <TalkCard {...talk} />
       ))}
     </div>
   </section>
