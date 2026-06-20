@@ -1,0 +1,43 @@
+---
+interface Props {
+  event: string;
+  title: string;
+  role: string;
+  date: string;
+  location: string;
+  coco: string;
+  link: string;
+}
+
+const { event, title, role, date, location, coco, link } = Astro.props;
+---
+
+<a
+  href={link}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group relative flex flex-col gap-3 rounded-lg border border-purple-500/10 bg-purple-500/5 p-5 transition-all hover:border-purple-500/30 hover:shadow-sm"
+>
+  <span class="absolute end-2 top-2 rounded-md border border-purple-500/30 bg-purple-500/10 px-2 py-0.5 text-[10px] font-semibold text-purple-500">
+    Speaker
+  </span>
+
+  <p class="pe-20 text-xs font-medium text-purple-400/80 uppercase tracking-wider">
+    {event}
+  </p>
+
+  <p class="font-semibold text-textColor group-hover:text-accent transition-colors">
+    {title}
+  </p>
+
+  <div class="flex flex-col gap-1 text-xs text-textColor/60">
+    <span>🎤 {role}</span>
+    <span>👥 Co-speaker: {coco}</span>
+    <span>📅 {date}</span>
+    <span>📍 {location}</span>
+  </div>
+
+  <p class="mt-auto pt-1 text-[11px] text-purple-400/60 group-hover:text-purple-400 transition-colors">
+    Instagram Post ↗
+  </p>
+</a>
