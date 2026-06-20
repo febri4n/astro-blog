@@ -1,7 +1,6 @@
 ---
 import PageLayout from "@/layouts/Base.astro";
 import ProjectCard from "@/components/ProjectCard.astro";
-import TalkCard from "@/components/TalkCard.astro";
 
 const meta = {
   description: "Projects and tooling around Kubernetes, Cloud Native, and platform automation.",
@@ -94,29 +93,6 @@ const explorationProjects = projects.filter((p) => p.category === "exploration")
 const publicCount = projects.filter((p) => !p.private).length;
 const privateCount = projects.filter((p) => p.private).length;
 const heroLabel = `${projects.length} Projects · ${publicCount} Public · ${privateCount} Private`;
-
-interface Talk {
-  event: string;
-  title: string;
-  role: string;
-  date: string;
-  location: string;
-  coco: string;
-  link: string;
-}
-
-const talks: Talk[] = [
-  {
-    event: "Datacomm Tech Series — DCloud",
-    title:
-      "Building Continuous Development & Operations with Kubernetes & CI/CD",
-    role: "Solihin Febrian Saputra (Cloud Development Engineer)",
-    date: "Kamis, 4 Juni 2026",
-    location: "Grha Datacomm, Jakarta Selatan",
-    coco: "Bayu Jayasukma (DCloud Product Specialist)",
-    link: "https://www.instagram.com/p/DYQ8DPmHWFf/",
-  },
-];
 ---
 
 <PageLayout meta={meta}>
@@ -167,23 +143,6 @@ const talks: Talk[] = [
     <div class="grid gap-4 sm:grid-cols-2">
       {explorationProjects.map((project) => (
         <ProjectCard {...project} />
-      ))}
-    </div>
-  </section>
-
-  <!-- Speaker / Talks -->
-  <section>
-    <div class="mb-1 flex items-center gap-2">
-      <h2 class="text-lg font-semibold text-textColor">🎤 Speaker</h2>
-      <span class="text-xs text-textColor/50">({talks.length})</span>
-    </div>
-    <p class="mb-5 text-sm text-textColor/60">
-      Tech talks dan workshop yang pernah diisi
-    </p>
-
-    <div class="grid gap-4 sm:grid-cols-2">
-      {talks.map((talk) => (
-        <TalkCard {...talk} />
       ))}
     </div>
   </section>
