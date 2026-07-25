@@ -1,5 +1,6 @@
 ---
 title: "Tutorial Git dan Github untuk Pemula"
+draft: false
 publishDate: "07 May 2019"
 description: "Tutorial Git dan Github, bagaimana cara menggunakan dan Install Git untuk pemula mulai dari instalasi, setting dan cara push ke repository Github."
 tags: ["git", "github", "version control"]

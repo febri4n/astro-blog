@@ -1,5 +1,6 @@
 ---
 title: "Tutorial Monitoring VPS & Docker Otomatis dengan Bash + Cron"
+draft: false
 publishDate: "30 May 2026"
 description: "Tutorial membuat script monitoring server Linux yang memantau CPU, memory, disk, dan Docker containers lalu dikirim otomatis via cron setiap hari."
 tags: ["docker", "monitoring", "bash", "cron", "linux", "devops"]

@@ -1,5 +1,6 @@
 ---
 title: "Tutorial Install Ansible di Linux Ubuntu 22.04 LTS"
+draft: false
 publishDate: "27 February 2023"
 description: "Menjelaskan bagaimana cara menginstall ansible di linux ubuntu secara mudah 1 server sebagai controller dan 2 server sebagai managed server."
 tags: ["ansible", "automation", "linux"]

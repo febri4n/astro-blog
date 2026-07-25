@@ -1,5 +1,6 @@
 ---
 title: "Tutorial Connect SSH Secara Passwordless Antar Server"
+draft: false
 publishDate: "15 February 2023"
 description: "Tutorial bagaimana menjelaskan cara terbuhung atau terkoneksi antar 2 server dengan menggunakan ssh port 22 tanpa input Password."
 tags: ["ssh", "linux", "server"]

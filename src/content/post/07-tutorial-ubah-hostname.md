@@ -1,5 +1,6 @@
 ---
 title: "Tutorial Mengubah Hostname di Linux Ubuntu Tanpa Restart"
+draft: false
 publishDate: "17 February 2023"
 description: "Menjelaskan bagaimana cara mudah mengganti hostname pada linux Ubuntu tanpa restart."
 tags: ["server", "linux", "ubuntu"]

@@ -1,5 +1,6 @@
 ---
 title: "Tutorial Install Docker di Linux Ubuntu 22.04 LTS"
+draft: false
 publishDate: "17 December 2022"
 description: "Tutorial lengkap bagaimana cara menginstall Docker dengan mudah pada Linux Ubuntu dilengkapi dengan beberapa perintah yang sering digunakan."
 tags: ["docker", "container", "linux","ubuntu"]

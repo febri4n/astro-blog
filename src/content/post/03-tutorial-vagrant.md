@@ -1,5 +1,6 @@
 ---
 title: "Tutorial Vagrant, Solusi Untuk Belajar DevOps Secara Lokal"
+draft: false
 publishDate: "21 November 2022"
 description: "Tutorial singkat bagaimana cara menggunakan Vagrant, salah satu tools untuk belajar DevOps secara lokal tanpa perlu sewa instance/vm di AWS/GCP."
 tags: ["vagrant", "virtualbox", "devops"]

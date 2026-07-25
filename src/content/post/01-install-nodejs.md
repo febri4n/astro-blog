@@ -1,5 +1,6 @@
 ---
 title: "Tutorial Install Node.js di Linux Ubuntu"
+draft: false
 publishDate: "17 February 2019"
 description: "Tutorial lengkap bagaimana cara menginstall Node.js dengan mudah pada Linux Ubuntu dengan menggunakan node.js version manager."
 tags: ["nodejs", "nvm", "linux"]

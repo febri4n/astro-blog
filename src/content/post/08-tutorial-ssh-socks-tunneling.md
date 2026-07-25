@@ -1,5 +1,6 @@
 ---
 title: "Tutorial SSH SOCKS Tunneling dengan Firefox"
+draft: false
 publishDate: "21 December 2022"
 description: "Tutorial SSH SOCKS5 Tunnel dengan browser Firefox, study case dengan menggunakan apache2 web server."
 tags: ["ssh", "tunneling", "devops"]

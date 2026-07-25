@@ -1,5 +1,6 @@
 ---
 title: "Perbedaan Useradd & Adduser di Linux"
+draft: false
 publishDate: "16 February 2023"
 description: "Menjelaskan dan mengetahui perbedaan dari command linux useradd & adduser dan menambahkan akses sudo ke user baru."
 tags: ["adduser", "useradd", "linux"]

@@ -1,5 +1,6 @@
 ---
 title: "Tutorial Setup Hermes Agent & Telegram Gateway di VPS"
+draft: false
 publishDate: "30 May 2026"
 description: "Tutorial lengkap cara install Hermes Agent AI di VPS Docker, konfigurasi provider, dan menghubungkannya dengan Telegram gateway untuk akses dari chat."
 tags: ["hermes", "docker", "telegram", "vps", "ai", "devops"]
