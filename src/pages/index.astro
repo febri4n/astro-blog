@@ -12,223 +12,140 @@ const tagsWithCount = getUniqueTagsWithCount(allPosts).slice(0, 12);
 const totalPosts = allPosts.length;
 const totalTags = tagsWithCount.length;
 const totalReadingTime = totalPosts * 5;
-
-// 📌 Pinned posts — pick 4 best articles by slug
-const pinnedSlugs = [
-  "04-install-docker",
-  "09-tutorial-install-ansible",
-  "10-tutorial-monitoring-vps-docker-cron",
-  "11-tutorial-setup-hermes-telegram",
-];
-const pinnedPosts = pinnedSlugs
-  .map((slug) => allPosts.find((p) => p.slug === slug))
-  .filter(Boolean);
 ---
 
 <PageLayout meta={{ title: "Home" }}>
-  <!-- Hero Section -->
-  <section class="relative mb-12 mt-4">
-    <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-      <div class="flex-1">
-        <h1 class="title mb-3 text-3xl font-bold leading-tight sm:text-4xl">
-          Hai, Saya <span class="text-accent">Febri4n</span> 👋
-        </h1>
-        <p class="mb-2 max-w-lg text-textColor/80 leading-relaxed">
-          Catatan, tutorial, dan dokumentasi seputar
-          <strong class="text-textColor">Cloud, DevOps &amp; Linux</strong>
-          dari pengalaman belajar sehari-hari.
-        </p>
-        <p class="mb-4 text-sm text-textColor/60">
-          <span class="font-medium text-textColor/80">{totalPosts}</span> tulisan ·
-          <span class="font-medium text-textColor/80">{totalTags}</span> topik ·
-          ±{totalReadingTime} menit bacaan
-        </p>
-      </div>
-    </div>
-  </section>
+	<!-- Hero Section -->
+	<section class="relative mb-12 mt-4">
+		<div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+			<div class="flex-1">
+				<h1 class="title mb-3 text-3xl font-bold leading-tight sm:text-4xl">
+					Hai, Saya <span class="text-accent">Febri4n</span> 👋
+				</h1>
+				<p class="mb-2 max-w-lg text-textColor/80 leading-relaxed">
+					Catatan, tutorial, dan dokumentasi seputar 
+					<strong class="text-textColor">Cloud, DevOps &amp; Linux</strong> 
+					dari pengalaman belajar sehari-hari.
+				</p>
+				<p class="mb-4 text-sm text-textColor/60">
+					<span class="font-medium text-textColor/80">{totalPosts}</span> tulisan · 
+					<span class="font-medium text-textColor/80">{totalTags}</span> topik · 
+					±{totalReadingTime} menit bacaan
+				</p>
+			</div>
+		</div>
+	</section>
 
-  <!-- Yang Lagi Dipelajari -->
-  <section class="mb-12">
-    <h2 class="title mb-4 text-lg font-semibold">📖 Yang Lagi Dipelajari</h2>
-    <div class="rounded-xl border border-accent/10 bg-accent/5 p-5">
-      <ul class="space-y-2 text-sm text-textColor/70">
-        <li class="flex items-start gap-2">
-          <span class="mt-0.5 text-accent">▸</span>
-          <span><strong class="text-textColor">Kubernetes multi-cluster</strong> — service mesh, GitOps dengan ArgoCD, fleet management</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="mt-0.5 text-accent">▸</span>
-          <span><strong class="text-textColor">AI/ML Ops</strong> — deployment model LLM open-source, inference optimization</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="mt-0.5 text-accent">▸</span>
-          <span><strong class="text-textColor">Platform Engineering</strong> — internal developer platform, Backstage, self-service infra</span>
-        </li>
-      </ul>
-    </div>
-  </section>
+	</section>
 
-  <!-- Stats Bar -->
-  <section class="mb-12 grid grid-cols-3 gap-3 sm:gap-4">
-    <div class="rounded-xl border border-accent/10 bg-accent/5 p-4 text-center">
-      <p class="text-2xl font-bold text-accent sm:text-3xl">{totalPosts}</p>
-      <p class="mt-1 text-xs text-textColor/60">Tulisan</p>
-    </div>
-    <div class="rounded-xl border border-accent/10 bg-accent/5 p-4 text-center">
-      <p class="text-2xl font-bold text-accent sm:text-3xl">{totalTags}</p>
-      <p class="mt-1 text-xs text-textColor/60">Topik</p>
-    </div>
-    <div class="rounded-xl border border-accent/10 bg-accent/5 p-4 text-center">
-      <p class="text-2xl font-bold text-accent sm:text-3xl">±{totalReadingTime}</p>
-      <p class="mt-1 text-xs text-textColor/60">Menit Baca</p>
-    </div>
-  </section>
+	<!-- Stats Bar -->
+	<section class="mb-12 grid grid-cols-3 gap-3 sm:gap-4">
+		<div class="rounded-xl border border-accent/10 bg-accent/5 p-4 text-center">
+			<p class="text-2xl font-bold text-accent sm:text-3xl">{totalPosts}</p>
+			<p class="mt-1 text-xs text-textColor/60">Tulisan</p>
+		</div>
+		<div class="rounded-xl border border-accent/10 bg-accent/5 p-4 text-center">
+			<p class="text-2xl font-bold text-accent sm:text-3xl">{totalTags}</p>
+			<p class="mt-1 text-xs text-textColor/60">Topik</p>
+		</div>
+		<div class="rounded-xl border border-accent/10 bg-accent/5 p-4 text-center">
+			<p class="text-2xl font-bold text-accent sm:text-3xl">±{totalReadingTime}</p>
+			<p class="mt-1 text-xs text-textColor/60">Menit Baca</p>
+		</div>
+	</section>
 
-  <!-- Tags Cloud -->
-  <section class="mb-12">
-    <h2 class="title mb-4 text-lg font-semibold">Topik Populer</h2>
-    <div class="flex flex-wrap gap-2">
-      {
-        tagsWithCount.map(([tag, count]) => (
-          <a
-            class="inline-flex items-center gap-1.5 rounded-full border border-accent/20 px-3 py-1.5 text-xs font-medium text-textColor/70 transition-all hover:border-accent hover:bg-accent/10 hover:text-accent"
-            href={`/tags/${tag}/`}
-          >
-            #{tag}
-            <span class="text-[10px] text-textColor/40">({count})</span>
-          </a>
-        ))
-      }
-    </div>
-  </section>
+	<!-- Tags Cloud -->
+	<section class="mb-12">
+		<h2 class="title mb-4 text-lg font-semibold">Topik Populer</h2>
+		<div class="flex flex-wrap gap-2">
+			{
+				tagsWithCount.map(([tag, count]) => (
+					<a
+						class="inline-flex items-center gap-1.5 rounded-full border border-accent/20 px-3 py-1.5 text-xs font-medium text-textColor/70 transition-all hover:border-accent hover:bg-accent/10 hover:text-accent"
+						href={`/tags/${tag}/`}
+					>
+						#{tag}
+						<span class="text-[10px] text-textColor/40">({count})</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
 
-  <!-- Pinned Posts -->
-  {
-    pinnedPosts.length > 0 && (
-      <section class="mb-12">
-        <h2 class="title mb-4 text-lg font-semibold">📌 Artikel Pilihan</h2>
-        <div class="grid gap-3 sm:grid-cols-2">
-          {pinnedPosts.map((p) => (
-            <a
-              href={`/posts/${p.slug}/`}
-              class="group flex flex-col justify-between rounded-xl border border-accent/10 bg-accent/5 p-4 transition-all hover:border-accent/30 hover:shadow-sm"
-            >
-              <div>
-                <h3 class="mb-1 text-sm font-semibold text-textColor group-hover:text-accent">
-                  {p.data.title}
-                </h3>
-                <p class="line-clamp-2 text-xs text-textColor/60">
-                  {p.data.description}
-                </p>
-              </div>
-              <div class="mt-3 flex items-center gap-2 text-[10px] text-textColor/40">
-                <FormattedDate date={p.data.publishDate} />
-                {p.data.tags?.slice(0, 2).map((tag: string) => (
-                  <span class="rounded-full border border-accent/15 px-1.5 py-0.5 text-accent">
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
-    )
-  }
+	<!-- Featured Post -->
+	{
+		featured && (
+			<section class="mb-12">
+				<h2 class="title mb-4 text-lg font-semibold">🌟 Featured</h2>
+				<a
+					href={`/posts/${featured.slug}/`}
+					class="group block rounded-xl border border-accent/20 bg-gradient-to-br from-accent/5 to-transparent p-5 transition-all hover:border-accent/40 hover:shadow-md sm:p-6"
+				>
+					<div class="flex items-start justify-between gap-4">
+						<div class="flex-1">
+							<h3 class="mb-2 text-lg font-bold text-accent group-hover:underline sm:text-xl">
+								{featured.data.title}
+							</h3>
+							<p class="mb-3 line-clamp-2 text-sm text-textColor/70">
+								{featured.data.description}
+							</p>
+							<div class="flex flex-wrap items-center gap-3 text-xs text-textColor/50">
+								<span>
+									<FormattedDate date={featured.data.publishDate} />
+								</span>
+								{featured.data.tags?.length && (
+									<div class="flex gap-1.5">
+										{featured.data.tags.slice(0, 3).map((tag) => (
+											<span class="rounded-full border border-accent/15 px-2 py-0.5 text-[10px] text-accent">
+												#{tag}
+											</span>
+										))}
+									</div>
+								)}
+							</div>
+						</div>
+						<span class="hidden text-2xl sm:block">&rarr;</span>
+					</div>
+				</a>
+			</section>
+		)
+	}
 
-  <!-- Featured Post -->
-  {
-    featured && (
-      <section class="mb-12">
-        <h2 class="title mb-4 text-lg font-semibold">🌟 Featured</h2>
-        <a
-          href={`/posts/${featured.slug}/`}
-          class="group block rounded-xl border border-accent/20 bg-gradient-to-br from-accent/5 to-transparent p-5 transition-all hover:border-accent/40 hover:shadow-md sm:p-6"
-        >
-          <div class="flex items-start justify-between gap-4">
-            <div class="flex-1">
-              <h3 class="mb-2 text-lg font-bold text-accent group-hover:underline sm:text-xl">
-                {featured.data.title}
-              </h3>
-              <p class="mb-3 line-clamp-2 text-sm text-textColor/70">
-                {featured.data.description}
-              </p>
-              <div class="flex flex-wrap items-center gap-3 text-xs text-textColor/50">
-                <span>
-                  <FormattedDate date={featured.data.publishDate} />
-                </span>
-                {featured.data.tags?.length && (
-                  <div class="flex gap-1.5">
-                    {featured.data.tags.slice(0, 3).map((tag) => (
-                      <span class="rounded-full border border-accent/15 px-2 py-0.5 text-[10px] text-accent">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-            <span class="hidden text-2xl sm:block">&rarr;</span>
-          </div>
-        </a>
-      </section>
-    )
-  }
-
-  <!-- Quick Links to Projects -->
-  <section class="mb-12">
-    <h2 class="title mb-4 text-lg font-semibold">🛠️ Projects</h2>
-    <a
-      href="/projects"
-      class="group flex items-center justify-between rounded-xl border border-accent/10 bg-accent/5 p-5 transition-all hover:border-accent/30 hover:shadow-sm"
-    >
-      <div>
-        <p class="text-sm font-semibold text-textColor group-hover:text-accent">
-          Lihat portfolio & proyek yang sedang dikerjakan
-        </p>
-        <p class="mt-1 text-xs text-textColor/50">
-          Tools, automation, dan eksperimen seputar Cloud & DevOps
-        </p>
-      </div>
-      <span class="text-lg text-textColor/30 group-hover:text-accent">&rarr;</span>
-    </a>
-  </section>
-
-  <!-- Latest Posts -->
-  <section aria-label="Blog post list">
-    <div class="mb-4 flex items-center justify-between">
-      <h2 class="title text-lg font-semibold">Tulisan Terbaru</h2>
-      <a class="text-xs font-medium text-accent hover:underline" href="/posts/">
-        Lihat semua &rarr;
-      </a>
-    </div>
-    <ul class="divide-y divide-accent/10">
-      {
-        latestPosts.map((p) => {
-          const postDate = p.data.updatedDate ?? p.data.publishDate;
-          return (
-            <li class="grid gap-x-4 gap-y-1 py-4 sm:grid-cols-[120px_1fr]">
-              <FormattedDate
-                class="min-w-[120px] text-gray-600 dark:text-gray-400"
-                date={postDate}
-              />
-              <div>
-                {p.data.draft && <span class="text-red-500">(Draft) </span>}
-                <a
-                  class="cactus-link font-medium"
-                  data-astro-prefetch
-                  href={`/posts/${p.slug}/`}
-                >
-                  {p.data.title}
-                </a>
-                <p class="mt-1 line-clamp-2 text-sm text-textColor/60">
-                  {p.data.description}
-                </p>
-              </div>
-            </li>
-          );
-        })
-      }
-    </ul>
-  </section>
+	<!-- Latest Posts -->
+	<section aria-label="Blog post list">
+		<div class="mb-4 flex items-center justify-between">
+			<h2 class="title text-lg font-semibold">Tulisan Terbaru</h2>
+			<a class="text-xs font-medium text-accent hover:underline" href="/posts/">
+				Lihat semua &rarr;
+			</a>
+		</div>
+		<ul class="divide-y divide-accent/10">
+			{
+				latestPosts.map((p) => {
+					const postDate = p.data.updatedDate ?? p.data.publishDate;
+					return (
+						<li class="grid gap-x-4 gap-y-1 py-4 sm:grid-cols-[120px_1fr]">
+							<FormattedDate
+								class="min-w-[120px] text-gray-600 dark:text-gray-400"
+								date={postDate}
+							/>
+							<div>
+								{p.data.draft && <span class="text-red-500">(Draft) </span>}
+								<a
+									class="cactus-link font-medium"
+									data-astro-prefetch
+									href={`/posts/${p.slug}/`}
+								>
+									{p.data.title}
+								</a>
+								<p class="mt-1 line-clamp-2 text-sm text-textColor/60">
+									{p.data.description}
+								</p>
+							</div>
+						</li>
+					);
+				})
+			}
+		</ul>
+	</section>
 </PageLayout>
