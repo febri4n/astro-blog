@@ -132,6 +132,17 @@ const certBadges: Badge[] = [
     badgeUrl:
       "https://badges.suse.com/151683a3-20b8-461b-b40c-b05bc49ed936",
   },
+  {
+    id: "sca-rancher-prime",
+    name: "SCA Rancher Prime",
+    fullName: "SUSE Certified Administrator in SUSE Rancher Prime",
+    issuer: "SUSE",
+    date: "Jul 2026 · Exp Jul 2028",
+    imageUrl:
+      "https://images.credential.net/62849d78-4144-434a-aa25-53d8985cb220_1785124818880_badge.png",
+    badgeUrl:
+      "https://badges.suse.com/62849d78-4144-434a-aa25-53d8985cb220",
+  },
 ];
 
 const trainingBadges: Badge[] = [
@@ -319,7 +330,7 @@ const trainingBadges: Badge[] = [
 
     <div class="grid gap-4 sm:grid-cols-2">
       {certBadges
-        .filter((b) => ["rhcsa", "ace", "scds-rke2", "scds-suse-ai"].includes(b.id))
+        .filter((b) => ["rhcsa", "ace", "scds-rke2", "scds-suse-ai", "sca-rancher-prime"].includes(b.id))
         .map((badge) => (
           <a
             href={badge.badgeUrl}
