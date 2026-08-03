@@ -1,8 +1,9 @@
 ---
 title: "PostgreSQL High Availability dengan Patroni dan etcd"
 description: "Tutorial lengkap membangun PostgreSQL HA cluster menggunakan Patroni dan etcd di Ubuntu 26.04, dari hasil trial-error langsung di production."
-pubDate: 2026-08-03
-tags: ["postgresql", "devops", "high-availability", "kubernetes", "harbor"]
+tags: ["postgresql", "devops", "high-availability", "harbor", "tutorial"]
+draft: false
+publishDate: "2026-08-03"
 ---
 
 Membangun PostgreSQL yang highly available seringkali lebih rumit dari yang dibayangkan. Dokumentasi resmi biasanya hanya mencakup skenario ideal, sementara di lapangan banyak jebakan yang tidak terduga. Artikel ini adalah hasil dari proses build, break, dan fix selama setup PostgreSQL HA untuk backend Harbor registry, dan ditulis agar kamu tidak perlu mengulangi kesalahan yang sama.
