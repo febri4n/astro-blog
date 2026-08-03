@@ -359,9 +359,14 @@ Output yang diharapkan:
 
 ### 2.6: Start db-02
 
-Setelah db-01 menjadi Leader, jalankan db-02:
+Setelah db-01 menjadi Leader, di db-02 **hapus data dir lama terlebih dahulu** (wajib jika ini bukan first-time startup, untuk menghindari `system ID mismatch`):
 
 ```bash
+sudo rm -rf /var/lib/postgresql/18/main
+sudo mkdir -p /var/lib/postgresql/18/main
+sudo chown -R postgres:postgres /var/lib/postgresql/18
+sudo chmod 700 /var/lib/postgresql/18/main
+
 sudo systemctl enable patroni && sudo systemctl start patroni
 sleep 8
 patronictl -c /etc/patroni.yml list
@@ -430,7 +435,7 @@ sudo ufw allow from 192.168.10.0/24 to any port 8008 proto tcp
 
 ## Ringkasan Jebakan dan Solusi
 
-Berikut adalah 9 jebakan yang ditemui selama proses build dan cara mengatasinya:
+Berikut adalah 10 jebakan yang ditemui selama proses build dan cara mengatasinya:
 
 | Gejala | Penyebab | Solusi |
 |---|---|---|
@@ -439,6 +444,7 @@ Berikut adalah 9 jebakan yang ditemui selama proses build dan cara mengatasinya:
 | etcd `context deadline exceeded` | Hanya 1 dari 3 node berjalan | Start 3 node bersamaan dalam 60 detik |
 | `conflicting environment variable` | Konflik flag `--enable-v2` dan env var | Hapus flag dari ExecStart, env var sudah cukup |
 | `system ID mismatch` di Patroni | State cluster lama di etcd v2 masih tersisa | Hapus via `curl -X DELETE .../v2/keys/service?recursive=true` |
+| `system ID mismatch` pada replica | Data dir replica berisi data dari percobaan sebelumnya | Hapus data dir replica (`rm -rf /var/.../main`) lalu restart Patroni |
 | Patroni stuck `Replica stopped` | Data dir kotor + tidak ada leader | Hapus direktori data dan etcd keys, bootstrap ulang |
 | PostgreSQL FATAL: config error | `postgresql.conf` sistem punya `include_dir` yang invalid | Biarkan Patroni menulis konfigurasi sendiri — data dir kosong |
 | `no pg_hba.conf entry for replication` | Bootstrap Patroni tidak menambah akses replicator | Tambahkan manual di Leader lalu reload |
