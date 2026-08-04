@@ -1,6 +1,6 @@
 ---
 title: "Load Balancing PostgreSQL dengan HAProxy dan Keepalived"
-description: "Tutorial lengkap setup HAProxy load balancer dengan Keepalived VRRP failover untuk PostgreSQL HA cluster, termasuk konfigurasi Harbor registry, health check Patroni API, dan strategi leader-only routing."
+description: "Tutorial setup HAProxy load balancer dengan Keepalived VRRP failover untuk PostgreSQL HA, termasuk health check Patroni API dan leader-only routing."
 tags: ["haproxy", "keepalived", "postgresql", "high-availability", "load-balancing", "devops", "tutorial"]
 draft: false
 publishDate: "2026-08-04"
