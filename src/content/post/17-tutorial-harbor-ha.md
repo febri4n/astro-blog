@@ -1,5 +1,5 @@
 ---
-title: "Harbor High Availability dengan External PostgreSQL dan Redis Sentinel"
+title: "Harbor HA dengan External PostgreSQL dan Redis Sentinel"
 description: "Tutorial membangun Harbor 2.15.2 HA cluster dengan external PostgreSQL Patroni, Redis Sentinel, HAProxy, dan Keepalived di 3 node. Plus failover testing."
 tags: ["harbor", "devops", "high-availability", "postgresql", "redis", "haproxy", "tutorial"]
 draft: false
