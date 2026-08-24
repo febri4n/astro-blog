@@ -311,9 +311,14 @@ const talks: Talk[] = [
           class="flex flex-col gap-4 rounded-xl border border-accent/10 bg-accent/5 p-5 transition-all hover:border-accent/30 hover:shadow-sm sm:flex-row sm:items-center"
         >
           <img
-            src="/badges/kcd-logo-color.svg"
+            src="/badges/kcd-logo-black.svg"
             alt="Kubernetes Community Days"
-            class="h-14 w-auto flex-shrink-0 object-contain sm:h-16"
+            class="h-14 w-auto flex-shrink-0 object-contain sm:h-16 dark:hidden"
+          />
+          <img
+            src="/badges/kcd-logo-white.svg"
+            alt="Kubernetes Community Days"
+            class="hidden h-14 w-auto flex-shrink-0 object-contain sm:h-16 dark:block"
           />
           <div class="min-w-0 flex-1">
             <p class="text-xs font-semibold uppercase tracking-wide text-textColor/60">
