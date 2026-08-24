@@ -180,6 +180,23 @@ const trainingBadges: Badge[] = [
       "https://www.credly.com/badges/49430155-c9cd-4235-bbf7-932ee1d97d88",
   },
 ];
+
+interface Talk {
+  title: string;
+  event: string;
+  location: string;
+  year: string;
+}
+
+const talks: Talk[] = [
+  {
+    title:
+      "Otomasi REST API-Driven HAProxy sebagai External Load Balancer dengan Kubernetes Operator (Kopf)",
+    event: "Kubernetes Community Days Indonesia 2026",
+    location: "Selah Hall, Piset Square, Bandung",
+    year: "2026",
+  },
+];
 ---
 
 <PageLayout meta={meta}>
@@ -278,6 +295,35 @@ const trainingBadges: Badge[] = [
           </a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Speaker -->
+  <section class="mb-12">
+    <h2 class="title mb-1 text-lg font-semibold">🎤 Speaker</h2>
+    <p class="mb-5 text-sm text-textColor/60">
+      Konferensi &amp; call for proposal
+    </p>
+
+    <div class="flex flex-col gap-4">
+      {talks.map((talk) => (
+        <div
+          class="rounded-xl border border-accent/10 bg-accent/5 p-5 transition-all hover:border-accent/30 hover:shadow-sm"
+        >
+          <div class="mb-2 flex items-center gap-2">
+            <span class="rounded-full bg-accent/20 px-2 py-0.5 text-xs font-medium text-accent">
+              {talk.year}
+            </span>
+            <span class="text-xs font-semibold uppercase tracking-wide text-textColor/60">
+              {talk.event}
+            </span>
+          </div>
+          <h3 class="text-base font-semibold leading-snug text-textColor">
+            {talk.title}
+          </h3>
+          <p class="mt-2 text-xs text-textColor/60">📍 {talk.location}</p>
+        </div>
+      ))}
     </div>
   </section>
 
