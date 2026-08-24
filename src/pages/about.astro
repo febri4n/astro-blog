@@ -193,7 +193,7 @@ const talks: Talk[] = [
     title:
       "Otomasi REST API-Driven HAProxy sebagai External Load Balancer dengan Kubernetes Operator (Kopf)",
     event: "Kubernetes Community Days Indonesia 2026",
-    location: "Selah Hall, Piset Square, Bandung",
+    location: "Bandung",
     year: "2026",
   },
 ];
@@ -308,20 +308,22 @@ const talks: Talk[] = [
     <div class="flex flex-col gap-4">
       {talks.map((talk) => (
         <div
-          class="rounded-xl border border-accent/10 bg-accent/5 p-5 transition-all hover:border-accent/30 hover:shadow-sm"
+          class="flex flex-col gap-4 rounded-xl border border-accent/10 bg-accent/5 p-5 transition-all hover:border-accent/30 hover:shadow-sm sm:flex-row sm:items-center"
         >
-          <div class="mb-2 flex items-center gap-2">
-            <span class="rounded-full bg-accent/20 px-2 py-0.5 text-xs font-medium text-accent">
-              {talk.year}
-            </span>
-            <span class="text-xs font-semibold uppercase tracking-wide text-textColor/60">
+          <img
+            src="/badges/kcd-logo-color.svg"
+            alt="Kubernetes Community Days"
+            class="h-14 w-auto flex-shrink-0 object-contain sm:h-16"
+          />
+          <div class="min-w-0 flex-1">
+            <p class="text-xs font-semibold uppercase tracking-wide text-textColor/60">
               {talk.event}
-            </span>
+            </p>
+            <h3 class="mt-1 text-base font-semibold leading-snug text-textColor">
+              {talk.title}
+            </h3>
+            <p class="mt-1.5 text-xs text-textColor/60">📍 {talk.location}</p>
           </div>
-          <h3 class="text-base font-semibold leading-snug text-textColor">
-            {talk.title}
-          </h3>
-          <p class="mt-2 text-xs text-textColor/60">📍 {talk.location}</p>
         </div>
       ))}
     </div>
