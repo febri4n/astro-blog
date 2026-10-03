@@ -186,6 +186,7 @@ interface Talk {
   event: string;
   location: string;
   year: string;
+  url?: string;
 }
 
 const talks: Talk[] = [
@@ -195,6 +196,7 @@ const talks: Talk[] = [
     event: "Kubernetes Community Days Indonesia",
     location: "Selah Hall, Piset Square, Bandung",
     year: "2026",
+    url: "https://sessionize.com/febri4n/",
   },
 ];
 ---
@@ -330,28 +332,23 @@ const talks: Talk[] = [
               </p>
             </div>
             <h3 class="mt-1 text-base font-semibold leading-snug text-textColor">
-              {talk.title}
+              {talk.url ? (
+                <a
+                  href={talk.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="transition-colors hover:text-accent hover:underline"
+                >
+                  {talk.title}
+                </a>
+              ) : (
+                talk.title
+              )}
             </h3>
             <p class="mt-1.5 text-xs text-textColor/60">📍 {talk.location}</p>
           </div>
         </div>
       ))}
-      <a
-        href="https://sessionize.com/febri4n/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center justify-between gap-4 rounded-xl border border-accent/10 bg-accent/5 p-5 transition-all hover:border-accent/30 hover:shadow-sm"
-      >
-        <div class="min-w-0 flex-1">
-          <p class="text-xs font-semibold uppercase tracking-wide text-textColor/60">
-            Sessionize
-          </p>
-          <h3 class="mt-1 text-base font-semibold leading-snug text-textColor">
-            Profil speaker &amp; daftar sesi lengkap
-          </h3>
-        </div>
-        <span class="flex-shrink-0 text-sm font-medium text-accent">Lihat →</span>
-      </a>
     </div>
   </section>
 
