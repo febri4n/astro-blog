@@ -49,14 +49,14 @@ Aku enggak mencari pasangan yang sempurna. Aku lebih ingin menemukan seseorang y
 Seseorang yang bisa diajak komunikasi dengan baik, bisa bercanda tentang hal-hal receh ataupun ngobrolin hal serius.
 Menurutku enggak semua kriteria harus ditentukan dari awal, terkadang ada banyak hal tentang seseorang yang mungkin baru bisa kita ketahui setelah benar-benar mengenalnya.
 
-Jadi sisanya mungkin bisa kita cari tahu sambil jalan dan proses kenalan kalau diri kakak sendiri merasa cocok ya. :)
+Jadi sisanya mungkin bisa kita cari tahu sambil jalan dan proses kenalan kalau dari kakak sendiri merasa cocok ya. :)
 
 ## Potential Green Flags
 
 - Belum pernah pacaran dan memiliki mantan. Teman cewek yang dekat tidak terlalu banyak.
 - Suka jadi pendengar terutama kalau kamu cerita tentang sesuatu yang kamu suka.
 - Suka belajar dan explore hal baru yang positif.
-- Kalau seseorang penting buatku, aku akan berusaha menyediakan waktu.
+- Bukan tipe yang gampang marah
 
 
 ## Possible Red Flags
