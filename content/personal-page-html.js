@@ -445,7 +445,7 @@ export default `<!doctype html>
       <div class="socials">
         <a href="https://blog.febri4n.my.id/about/" target="_blank" rel="noopener">📄 CV profesional</a>
         <a href="https://instagram.com/sorediharisabtu" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.threads.com/@sorediharisabtu/reposts" target="_blank" rel="noopener">Threads (repostan)</a>
+        <a href="https://www.threads.com/@sorediharisabtu/reposts" target="_blank" rel="noopener">Threads</a>
       </div>
     </div>
   </section>
