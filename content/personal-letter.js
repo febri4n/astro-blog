@@ -25,7 +25,7 @@ Teknik Elektro. Untuk cerita keluarga yang lebih panjang, aku simpan beberapa un
 Senin sampai jumat sebagian besar waktuku tentunya lebih banyak dihabiskan untuk kerja sebagai Cloud Engineer.
 Jadi keseharianku enggak jauh-jauh dari server, troubleshooting, deployment, meeting dan terkadang ngoding juga. Kalo ada service atau aplikasi yang gak jalan? Nah itu aku biasanya jadi salah satu orang yang dicari wkwkwk (Jangan sampe deh, gak enak soalnya. Yang tadinya laper bisa kenyang seketika).
 
-Di luar pekerjaan, keseharian ku sendiri cukup simple. Dibilang suka main game ? Engga tertalu. Aku sendiri suka explore, main badminton dan jalan kaki (rencana mau coba hoby sepeda sih). Kadang explore tempat baru dan juga suka pergi gitu aja tanpa agenda keliling naik TJ jalan-jalan cobain tempat atau makanan baru atau sekadar menikmati suasana yang berbeda aja dari rutinitas sehari-hari.. Sempat kepikiran mau cobain semua rute TJ-nya wkwkwk, mungkin pikiran semua perantau yang pertama kali kesini seperti itu. Kalo sabtu dipakai buat jalan-jalan seperti itu biasanya minggu full di kos buat rechager energy atau beberes.
+Di luar pekerjaan, keseharian ku sendiri cukup simple. Dibilang suka main game ? Engga terlalu. Aku sendiri suka explore, main badminton dan jalan kaki (rencana mau coba hobby sepeda sih). Kadang explore tempat baru dan juga suka pergi gitu aja tanpa agenda keliling naik TJ jalan-jalan cobain tempat atau makanan baru atau sekadar menikmati suasana yang berbeda aja dari rutinitas sehari-hari.. Sempat kepikiran mau cobain semua rute TJ-nya wkwkwk, mungkin pikiran semua perantau yang pertama kali kesini seperti itu. Kalo sabtu dipakai buat jalan-jalan seperti itu biasanya minggu full di kos buat rechager energy atau beberes.
 
 ## Values
 
