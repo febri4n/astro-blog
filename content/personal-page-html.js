@@ -277,8 +277,7 @@ export default `<!doctype html>
   <section class="reveal" id="personality">
     <div class="eyebrow">01 · Soft Skills</div>
     <h2>Personality</h2>
-    <p>Aku termasuk orang yang agak pendiam dan introvert, dan memang bukan orang yang suka keramaian. Biasanya baru cair kalau sudah satu frekuensi, atau kalau obrolannya masuk ke hal yang sama-sama kita suka. Receh sedikit pun kadang aku bisa ketawa ngakak, wkwkwk.</p>
-    <p>Oh iya, aku jarang suka foto. Jadi jangan kaget kalau koleksi fotoku memang sedikit, hehe.</p>
+    <p>Aku termasuk orang yang agak pendiam dan introvert, dan memang bukan orang yang suka keramaian. Biasanya baru cair kalau sudah satu frekuensi, atau kalau obrolannya masuk ke hal yang sama-sama kita suka. Receh sedikit pun kadang aku bisa ketawa ngakak, wkwkwk. Oh iya, aku jarang suka foto.</p>
     <p class="muted" style="font-size:.9rem">Ketuk salah satu minatku di bawah ini 👇</p>
     <div class="chips" id="chips">
       <button class="chip" data-note="Kucing selalu jadi topik yang bikin aku langsung semangat ngobrol 🐾">🐱 Kucing</button>
