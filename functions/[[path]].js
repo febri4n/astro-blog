@@ -1,13 +1,15 @@
 // Cloudflare Pages Function — halaman personal ber-password.
 //
-//   /personal       halaman yang enak dibaca / dipresentasikan
-//   /personal.txt   teks mentahnya, buat yang mau copy-paste
+//   /personal.html   halaman yang enak dibaca / dipresentasikan
+//   /personal        sama dengan di atas
+//   /personal.txt    teks mentah suratnya, buat yang mau copy-paste
 //
-// Isi surat diimpor dari content/personal-letter.js (di luar public/, jadi tidak
-// pernah ter-deploy sebagai aset statis dan tidak punya URL sendiri).
+// Tampilan halaman ada di content/personal-page-html.js, teks suratnya di
+// content/personal-letter.js. Keduanya di luar public/, jadi tidak pernah ter-deploy
+// sebagai aset statis dan tidak punya URL sendiri.
 
 import content from "../content/personal-letter.js";
-import { renderLetterPage } from "../content/personal-page.js";
+import pageHtml from "../content/personal-page-html.js";
 import {
   HEADERS_LOCKED,
   clearedCookie,
@@ -19,26 +21,23 @@ import {
   verifyPassword,
 } from "../lib/personal-gate.js";
 
+const PAGE_PATHS = ["/personal.html", "/personal"];
+
 export async function onRequest(context) {
   const { request, env, next } = context;
   const url = new URL(request.url);
   const path = url.pathname.replace(/\/+$/, "") || "/";
 
   const wantsText = path === "/personal.txt";
-  const wantsPage = path === "/personal";
+  const wantsPage = PAGE_PATHS.includes(path);
 
   // Path lain (termasuk /content/... dan /lib/...) tetap diserahkan ke aset statis.
   if (!wantsText && !wantsPage) return next();
 
   // Sub-path di bawah /personal diarahkan ke halaman utamanya.
-  if (!wantsText && url.pathname !== "/personal") {
-    return new Response(null, { status: 308, headers: { location: "/personal" } });
+  if (!wantsText && url.pathname !== path) {
+    return new Response(null, { status: 308, headers: { location: "/personal.html" } });
   }
-
-  const serve = async (password) => {
-    if (wantsText) return plainText(content);
-    return html(renderLetterPage(content, { avatar: "/avatar.jpg" }));
-  };
 
   // Keluar
   if (url.searchParams.get("logout") === "1") {
@@ -58,7 +57,7 @@ export async function onRequest(context) {
     }
 
     if (await verifyPassword(submitted)) {
-      const body = await serve(submitted);
+      const body = wantsText ? plainText(content) : html(pageHtml);
       const headers = new Headers(body.headers);
       headers.append("set-cookie", await sessionCookie(submitted));
       return new Response(body.body, { status: 200, headers });
@@ -73,7 +72,7 @@ export async function onRequest(context) {
     });
   }
 
-  if (await isAuthenticated(request)) return serve(null);
+  if (!(await isAuthenticated(request))) return html(loginPageHtml());
 
-  return html(loginPageHtml());
+  return wantsText ? plainText(content) : html(pageHtml);
 }
