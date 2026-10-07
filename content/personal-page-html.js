@@ -300,12 +300,12 @@ export default `<!doctype html>
       <div class="fam">
         <div class="emoji">🏡</div>
         <h3>Bapak &amp; Ibu</h3>
-        <p>Asli suku Jawa, tinggal di Lampung. Dari merekalah aku belajar banyak hal.</p>
+        <p>Orang tua asli suku Jawa dan tinggal di Lampung.</p>
       </div>
       <div class="fam">
         <div class="emoji">🧑‍💻</div>
         <h3>Aku, si sulung</h3>
-        <p>Anak pertama dari dua bersaudara. Fokus di bidang IT dan sekarang merantau.</p>
+        <p>Anak pertama dari dua bersaudara. Fokus di bidang IT dan sekarang merantau di Jakarta.</p>
       </div>
       <div class="fam">
         <div class="emoji">⚡</div>
