@@ -277,7 +277,8 @@ export default `<!doctype html>
   <section class="reveal" id="personality">
     <div class="eyebrow">01 · Soft Skills</div>
     <h2>Personality</h2>
-    <p>Aku termasuk orang yang agak pendiam dan introvert, dan memang bukan orang yang suka keramaian. Biasanya baru cair kalau sudah satu frekuensi, atau kalau obrolannya masuk ke hal yang sama-sama kami suka. Receh sedikit pun kadang aku bisa ketawa ngakak, wkwkwk.</p>
+    <p>Aku termasuk orang yang agak pendiam dan introvert, dan memang bukan orang yang suka keramaian. Biasanya baru cair kalau sudah satu frekuensi, atau kalau obrolannya masuk ke hal yang sama-sama kita suka. Receh sedikit pun kadang aku bisa ketawa ngakak, wkwkwk.</p>
+    <p>Oh iya, aku jarang suka foto. Jadi jangan kaget kalau koleksi fotoku memang sedikit, hehe.</p>
     <p class="muted" style="font-size:.9rem">Ketuk salah satu minatku di bawah ini 👇</p>
     <div class="chips" id="chips">
       <button class="chip" data-note="Kucing selalu jadi topik yang bikin aku langsung semangat ngobrol 🐾">🐱 Kucing</button>
@@ -394,7 +395,7 @@ export default `<!doctype html>
     <div class="looking">
       <div class="eyebrow">05 · Job Description</div>
       <h2>What I'm Looking For</h2>
-      <p class="big">Aku nggak mencari pasangan yang sempurna. Aku ingin menemukan seseorang yang bikin kami berdua sama-sama nyaman dan bisa jadi diri sendiri.</p>
+      <p class="big">Aku nggak mencari pasangan yang sempurna. Aku ingin menemukan seseorang yang bikin kita berdua sama-sama nyaman dan bisa jadi diri sendiri.</p>
       <p>Seseorang yang bisa diajak berkomunikasi dengan baik, bisa bercanda soal hal-hal receh, dan juga bisa diajak ngobrol hal yang serius.</p>
       <p>Menurutku nggak semua kriteria harus ditentukan dari awal. Banyak hal tentang seseorang yang baru bisa kita ketahui setelah benar-benar mengenalnya.</p>
     </div>
@@ -444,7 +445,7 @@ export default `<!doctype html>
       <div class="socials">
         <a href="https://blog.febri4n.my.id/about/" target="_blank" rel="noopener">📄 CV profesional</a>
         <a href="https://instagram.com/sorediharisabtu" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.threads.net/@sorediharisabtu" target="_blank" rel="noopener">Threads</a>
+        <a href="https://www.threads.com/@sorediharisabtu/reposts" target="_blank" rel="noopener">Threads (repostan)</a>
       </div>
     </div>
   </section>
