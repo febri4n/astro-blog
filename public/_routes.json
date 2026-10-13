@@ -1,5 +1,0 @@
-{
-  "version": 1,
-  "include": ["/personal", "/personal.html", "/personal.txt", "/personal/*"],
-  "exclude": []
-}
