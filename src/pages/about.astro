@@ -17,6 +17,8 @@ interface Badge {
   imageUrl: string;
   badgeUrl: string;
   highlight?: boolean;
+  imageUrlDark?: string;
+  wideLogo?: boolean;
 }
 
 const kubestronaut: Badge = {
@@ -179,6 +181,28 @@ const trainingBadges: Badge[] = [
     badgeUrl:
       "https://www.credly.com/badges/49430155-c9cd-4235-bbf7-932ee1d97d88",
   },
+  {
+    id: "adinusa-devops-b7",
+    name: "DevOps Batch 7",
+    fullName: "Bootcamp DevOps Batch 7",
+    issuer: "Adinusa",
+    date: "November 2022",
+    imageUrl: "/badges/adinusa.svg",
+    imageUrlDark: "/badges/adinusa-white.svg",
+    badgeUrl: "https://adinusa.id/",
+    wideLogo: true,
+  },
+  {
+    id: "adinusa-devsecops",
+    name: "DevSecOps",
+    fullName: "Bootcamp DevSecOps",
+    issuer: "Adinusa",
+    date: "Oktober 2026",
+    imageUrl: "/badges/adinusa.svg",
+    imageUrlDark: "/badges/adinusa-white.svg",
+    badgeUrl: "https://adinusa.id/",
+    wideLogo: true,
+  },
 ];
 
 interface Talk {
@@ -199,6 +223,24 @@ const talks: Talk[] = [
     url: "https://sessionize.com/febri4n/",
   },
 ];
+
+// Logo ber-rasio lebar (mis. Adinusa 300x64) butuh lebar penuh + tinggi tetap supaya terbaca.
+const trainingCardClass = (badge: Badge) =>
+  [
+    "flex items-center gap-4 rounded-lg border border-accent/10 bg-accent/5 p-4 transition-all hover:border-accent/30 hover:shadow-sm",
+    badge.wideLogo ? "sm:col-span-2" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+const trainingImgClass = (badge: Badge, dark = false) =>
+  [
+    "flex-shrink-0 object-contain",
+    badge.wideLogo ? "h-9 w-auto sm:h-10" : "h-14 w-14 sm:h-16 sm:w-16",
+    dark ? "hidden dark:block" : badge.imageUrlDark ? "dark:hidden" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 ---
 
 <PageLayout meta={meta}>
@@ -426,9 +468,9 @@ const talks: Talk[] = [
 
   <!-- Training -->
   <section class="mb-12">
-    <h2 class="title mb-1 text-lg font-semibold">📘 Training & Workshop</h2>
+    <h2 class="title mb-1 text-lg font-semibold">📘 Training, Workshop & Bootcamp</h2>
     <p class="mb-5 text-sm text-textColor/60">
-      The Linux Foundation & Amazon Web Services
+      The Linux Foundation, Amazon Web Services & Adinusa
     </p>
 
     <div class="grid gap-4 sm:grid-cols-2">
@@ -437,13 +479,16 @@ const talks: Talk[] = [
           href={badge.badgeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center gap-4 rounded-lg border border-accent/10 bg-accent/5 p-4 transition-all hover:border-accent/30 hover:shadow-sm"
+          class={trainingCardClass(badge)}
         >
-          <img
-            src={badge.imageUrl}
-            alt={badge.name}
-            class="h-14 w-14 flex-shrink-0 sm:h-16 sm:w-16"
-          />
+          <img src={badge.imageUrl} alt={badge.name} class={trainingImgClass(badge)} />
+          {badge.imageUrlDark && (
+            <img
+              src={badge.imageUrlDark}
+              alt={badge.name}
+              class={trainingImgClass(badge, true)}
+            />
+          )}
           <div class="min-w-0">
             <p class="font-semibold text-textColor">{badge.name}</p>
             <p class="text-xs text-textColor/60">
