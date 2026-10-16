@@ -18,7 +18,6 @@ interface Badge {
   badgeUrl: string;
   highlight?: boolean;
   imageUrlDark?: string;
-  wideLogo?: boolean;
 }
 
 const kubestronaut: Badge = {
@@ -182,26 +181,24 @@ const trainingBadges: Badge[] = [
       "https://www.credly.com/badges/49430155-c9cd-4235-bbf7-932ee1d97d88",
   },
   {
-    id: "adinusa-devops-b7",
+    id: "btech-devops-b7",
     name: "DevOps Batch 7",
-    fullName: "Bootcamp DevOps Batch 7",
+    fullName: "Adinusa",
     issuer: "Adinusa",
     date: "November 2022",
-    imageUrl: "/badges/adinusa.svg",
-    imageUrlDark: "/badges/adinusa-white.svg",
-    badgeUrl: "https://adinusa.id/",
-    wideLogo: true,
+    imageUrl: "/badges/btech.png",
+    imageUrlDark: "/badges/btech-white.png",
+    badgeUrl: "https://btech.id/",
   },
   {
-    id: "adinusa-devsecops",
-    name: "DevSecOps",
-    fullName: "Bootcamp DevSecOps",
+    id: "btech-devsecops-b1",
+    name: "DevSecOps Batch 1",
+    fullName: "Adinusa",
     issuer: "Adinusa",
     date: "Oktober 2026",
-    imageUrl: "/badges/adinusa.svg",
-    imageUrlDark: "/badges/adinusa-white.svg",
-    badgeUrl: "https://adinusa.id/",
-    wideLogo: true,
+    imageUrl: "/badges/btech.png",
+    imageUrlDark: "/badges/btech-white.png",
+    badgeUrl: "https://btech.id/",
   },
 ];
 
@@ -224,19 +221,10 @@ const talks: Talk[] = [
   },
 ];
 
-// Logo ber-rasio lebar (mis. Adinusa 300x64) butuh lebar penuh + tinggi tetap supaya terbaca.
-const trainingCardClass = (badge: Badge) =>
-  [
-    "flex items-center gap-4 rounded-lg border border-accent/10 bg-accent/5 p-4 transition-all hover:border-accent/30 hover:shadow-sm",
-    badge.wideLogo ? "sm:col-span-2" : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
-
+// Ukuran semua kartu training sama; yang perlu khusus hanya logo dengan varian tema gelap.
 const trainingImgClass = (badge: Badge, dark = false) =>
   [
-    "flex-shrink-0 object-contain",
-    badge.wideLogo ? "h-9 w-auto sm:h-10" : "h-14 w-14 sm:h-16 sm:w-16",
+    "h-14 w-14 flex-shrink-0 object-contain sm:h-16 sm:w-16",
     dark ? "hidden dark:block" : badge.imageUrlDark ? "dark:hidden" : "",
   ]
     .filter(Boolean)
@@ -479,7 +467,7 @@ const trainingImgClass = (badge: Badge, dark = false) =>
           href={badge.badgeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class={trainingCardClass(badge)}
+          class="flex items-center gap-4 rounded-lg border border-accent/10 bg-accent/5 p-4 transition-all hover:border-accent/30 hover:shadow-sm"
         >
           <img src={badge.imageUrl} alt={badge.name} class={trainingImgClass(badge)} />
           {badge.imageUrlDark && (
