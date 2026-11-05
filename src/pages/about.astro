@@ -88,8 +88,18 @@ const certBadges: Badge[] = [
       "/badges/kcna.png",
     badgeUrl:
       "https://www.credly.com/badges/b2eded30-8db8-45b9-9c67-106b1a98296a",
-  },
-  {
+    },
+    {
+    id: "kcd-contributor-2026",
+    name: "KCD Indonesia 2026",
+    fullName: "Contributor — Kubernetes Community Days Indonesia 2026",
+    issuer: "The Linux Foundation",
+    date: "Nov 2026",
+    imageUrl: "/badges/kcd-contributor-2026.png",
+    badgeUrl:
+      "https://www.credly.com/badges/d72d677d-40bd-439b-8bed-512a0d07b79a",
+    },
+    {
     id: "rhcsa",
     name: "RHCSA",
     fullName: "Red Hat Certified System Administrator",
@@ -388,7 +398,7 @@ const trainingImgClass = (badge: Badge, dark = false) =>
       ☸️ Kubernetes Certifications
     </h2>
     <p class="mb-5 text-sm text-textColor/60">
-      Official certifications from CNCF / The Linux Foundation
+      Official credentials from CNCF / The Linux Foundation
     </p>
 
     <div
@@ -396,7 +406,7 @@ const trainingImgClass = (badge: Badge, dark = false) =>
     >
       {certBadges
         .filter((b) =>
-          ["cks", "cka", "ckad", "kcsa", "kcna"].includes(b.id)
+          ["cks", "cka", "ckad", "kcsa", "kcna", "kcd-contributor-2026"].includes(b.id)
         )
         .map((badge) => (
           <a
